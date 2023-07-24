@@ -16,11 +16,8 @@ import org.springframework.context.annotation.Import;
 @Import({RobotProperties.class, RobotService.class})
 @Configuration
 public class RobotAutoConfiguration {
-
     @Bean //把组件导入到容器中
     public RobotController robotController(){
         return new RobotController();
     }
-
-
 }

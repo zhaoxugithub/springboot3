@@ -12,8 +12,16 @@ spring:
       max-file-size: 10MB
   data:
     redis:
-      host: localhost
+      host: 1.15.149.196
       port: 6379
+      password: 123456
+
+
+tea:
+  name: "t1"
+  age: "20"
+  type: "math"
+
 --- #下边是一个单独文档
 a: b
 person:
@@ -51,4 +59,4 @@ person:
     c1:
       name: 小蓝
       age: 3
-    c2: {name: 小绿,age: 2} #对象也可用{}表示
+    c2: { name: 小绿,age: 2 } #对象也可用{}表示

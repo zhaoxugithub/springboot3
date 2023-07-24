@@ -27,6 +27,11 @@ public class HelloTest {
         new Stack<>();
     }
 
+    /*
+    Nested注解是JUnit 5中的一个测试注解，用于在一个测试类中嵌套另一个测试类。
+    它允许我们更好地组织和管理测试用例，可以将相关的测试用例放在同一个测试类中，
+    同时又能够很清晰地区分它们之间的逻辑关系。
+     */
     @Nested
     @DisplayName("when new")
     class WhenNew {

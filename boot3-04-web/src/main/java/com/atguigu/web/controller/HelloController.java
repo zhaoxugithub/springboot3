@@ -12,6 +12,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Locale;
+import java.util.UUID;
 
 /**
  * @author lfy
@@ -25,6 +26,7 @@ public class HelloController {
     /**
      * 默认使用新版 PathPatternParser 进行路径匹配
      * 不能匹配 ** 在中间的情况，剩下的和 antPathMatcher语法兼容
+     *
      * @param request
      * @param path
      * @return
@@ -37,14 +39,22 @@ public class HelloController {
         return uri;
     }
 
-
+    @GetMapping("/test1")
+    public Person test01() {
+        Person person = new Person();
+        person.setAge(19);
+        person.setEmail("1111");
+        person.setId(UUID.randomUUID().getMostSignificantBits());
+        return person;
+    }
     /**
      * 1、默认支持把对象写为json。因为默认web场景导入了jackson处理json的包;jackson-core
      * 2、jackson也支持把数据写为xml。导入xml相关依赖
+     *
      * @return
      */
     @GetMapping("/person")
-    public Person person(/*@RequestBody Person person*/){
+    public Person person(/*@RequestBody Person person*/) {
         Person person = new Person();
         person.setId(1L);
         person.setUserName("张三");
@@ -53,13 +63,14 @@ public class HelloController {
         return person;
     }
 
-    @Autowired  //国际化取消息用的组件
+    @Autowired  // 国际化取消息用的组件
     MessageSource messageSource;
+
     @GetMapping("/haha")
-    public String haha(HttpServletRequest request){
+    public String haha(HttpServletRequest request) {
 
         Locale locale = request.getLocale();
-        //利用代码的方式获取国际化配置文件中指定的配置项的值
+        // 利用代码的方式获取国际化配置文件中指定的配置项的值
         String login = messageSource.getMessage("login", null, locale);
         return login;
     }

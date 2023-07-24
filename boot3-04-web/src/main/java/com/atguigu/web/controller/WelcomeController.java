@@ -56,7 +56,10 @@ public class WelcomeController {
         model.addAttribute("show",false);
         return "welcome";
     }
-
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 
     /**
      * 来到首页

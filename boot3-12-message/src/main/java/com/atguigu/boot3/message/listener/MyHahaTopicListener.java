@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class MyHahaTopicListener {
 
     //默认的监听是从消息队列最后一个消息开始拿。新消息才能拿到
-    @KafkaListener(topics="newshaha",groupId="haha")
+    @KafkaListener(topics="news2",groupId="haha")
     public void haha(ConsumerRecord record){
         //1、获取消息的各种详细信息
 //        String topic = record.topic();

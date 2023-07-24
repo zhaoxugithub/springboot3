@@ -26,16 +26,13 @@ public class RedisTestController {
 
     @GetMapping("/count")
     public String count(){
-
         Long hello = stringRedisTemplate.opsForValue().increment("hello");
-
         //常见数据类型  k: v value可以有很多类型
         //string： 普通字符串 ： redisTemplate.opsForValue()
         //list:    列表：       redisTemplate.opsForList()
         //set:     集合:       redisTemplate.opsForSet()
         //zset:    有序集合:    redisTemplate.opsForZSet()
         //hash：   map结构：    redisTemplate.opsForHash()
-
         return "访问了【"+hello+"】次";
     }
 
@@ -43,17 +40,14 @@ public class RedisTestController {
     @GetMapping("/person/save")
     public String savePerson(){
         Person person = new Person(1L,"张三",18,new Date());
-
         //1、序列化： 对象转为字符串方式
         redisTemplate.opsForValue().set("person",person);
-
         return "ok";
     }
 
     @GetMapping("/person/get")
     public Person getPerson(){
         Person person = (Person) redisTemplate.opsForValue().get("person");
-
         return person;
     }
 }

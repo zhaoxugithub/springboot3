@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Login/Register</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-4jP+JHn6Yo0pG8T+3sTz8x6tj0mJ4dWZBvT4nKl5XeXh9a2lfZB+2Nc4nZiY8/8l5Ou48F2Lb7RyZL4z8B/3IA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .card-header h3 {
+      color: #333;
+    }
+    .form-group label {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .btn-primary:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card">
+        <div class="card-header bg-light">
+          <h3 class="text-center mb-0">Login</h3>
+        </div>
+        <div class="card-body">
+          <form th:action="@{/login}" method="post">
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" class="form-control" id="username" name="username" required />
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" id="password" name="password" required />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mx-auto">
+      <div class="card">
+        <div class="card-header bg-light">
+          <h3 class="text-center mb-0">Register</h3>
+        </div>
+        <div class="card-body">
+          <form th:action="@{/register}" method="post">
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" class="form-control" id="username" name="username" required />
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" id="password" name="password" required />
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password:</label>
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

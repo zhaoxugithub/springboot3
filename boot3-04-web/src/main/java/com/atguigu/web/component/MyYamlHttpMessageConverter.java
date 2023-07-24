@@ -21,10 +21,10 @@ import java.nio.charset.Charset;
  */
 public class MyYamlHttpMessageConverter extends AbstractHttpMessageConverter<Object> {
 
-    private ObjectMapper objectMapper = null; //把对象转成yaml
+    private ObjectMapper objectMapper = null; // 把对象转成yaml
 
-    public MyYamlHttpMessageConverter(){
-        //告诉SpringBoot这个MessageConverter支持哪种媒体类型  //媒体类型
+    public MyYamlHttpMessageConverter() {
+        // 告诉SpringBoot这个MessageConverter支持哪种媒体类型  //媒体类型
         super(new MediaType("text", "yaml", Charset.forName("UTF-8")));
         YAMLFactory factory = new YAMLFactory()
                 .disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
@@ -33,7 +33,7 @@ public class MyYamlHttpMessageConverter extends AbstractHttpMessageConverter<Obj
 
     @Override
     protected boolean supports(Class<?> clazz) {
-        //只要是对象类型，不是基本类型
+        // 只要是对象类型，不是基本类型
         return true;
     }
 
@@ -44,10 +44,9 @@ public class MyYamlHttpMessageConverter extends AbstractHttpMessageConverter<Obj
 
     @Override //@ResponseBody 把对象怎么写出去
     protected void writeInternal(Object methodReturnValue, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
-
-        //try-with写法，自动关流
-        try(OutputStream os = outputMessage.getBody()){
-            this.objectMapper.writeValue(os,methodReturnValue);
+        // try-with写法，自动关流
+        try (OutputStream os = outputMessage.getBody()) {
+            this.objectMapper.writeValue(os, methodReturnValue);
         }
 
     }

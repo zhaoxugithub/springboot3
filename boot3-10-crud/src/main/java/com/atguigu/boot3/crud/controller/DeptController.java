@@ -22,7 +22,6 @@ public class DeptController {
     @Autowired
     DeptService deptService;
 
-
     //Knife4j
     @Operation(summary = "查询",description = "按照id查询部门")
     @GetMapping("/dept/{id}")
@@ -35,7 +34,6 @@ public class DeptController {
     public List<Dept> getDept(){
         return deptService.getDepts();
     }
-
 
     @Operation(summary = "保存部门",description = "必须提交json")
     @PostMapping("/dept")

@@ -24,19 +24,14 @@ public class WeatherService {
 
     public Mono<String> weather(String city){
         //远程调用阿里云API
-
 //        Mono<String> mono = getByWebClient(city);
-
-
         Mono<String> weather = weatherInterface.getWeather(city);
-
         return weather;
     }
 
     private static Mono<String> getByWebClient(String city) {
         //1、创建WebClient
         WebClient client = WebClient.create();
-
         //2、准备数据
         Map<String,String> params = new HashMap<>();
         params.put("area", city);

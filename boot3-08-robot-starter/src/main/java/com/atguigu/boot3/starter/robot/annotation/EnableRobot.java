@@ -16,6 +16,4 @@ import java.lang.annotation.*;
 @Documented
 @Import(RobotAutoConfiguration.class)
 public @interface EnableRobot {
-
-
 }

@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentMap;
 @Service
 public class EmployeeService {
 
-    Map<Long,Employee> data = new ConcurrentHashMap<>();
+    Map<Long, Employee> data = new ConcurrentHashMap<>();
 
     public Employee getEmployeeById(Long id) {
         return data.get(id);
@@ -27,7 +27,7 @@ public class EmployeeService {
     }
 
     public void saveEmployee(Employee employee) {
-        data.put(employee.getId(),employee);
+        data.put(employee.getId(), employee);
     }
 
     public void deleteEmployee(Long id) {
