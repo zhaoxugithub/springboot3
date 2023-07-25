@@ -15,7 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@SpringBootApplication(scanBasePackages = "com.atguigu")
 //@SpringBootConfiguration
 //@EnableAutoConfiguration
-//@ComponentScan("com.atguigu") 可以使用这个注解指定包扫描路径
+//@ComponentScan("com.atguigu") 可以使用这个注解指定包扫描路
 @SpringBootApplication // 这是一个SpringBoot应用
 public class MainApplication {
     public static void main(String[] args) {
