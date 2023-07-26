@@ -17,13 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-
     @Autowired
     StringRedisTemplate redisTemplate;
 
     @GetMapping("/hello")
     public String hello(){
-
         return "Hello,Spring Boot 3!";
     }
 

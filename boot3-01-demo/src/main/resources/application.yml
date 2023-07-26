@@ -22,6 +22,7 @@ tea:
   age: "20"
   type: "math"
 
+
 --- #下边是一个单独文档
 a: b
 person:
@@ -60,3 +61,10 @@ person:
       name: 小蓝
       age: 3
     c2: { name: 小绿,age: 2 } #对象也可用{}表示
+
+student:
+  age: "20"
+  name: "zxx"
+  wight: 190
+
+

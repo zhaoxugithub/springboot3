@@ -1,6 +1,7 @@
 package com.atguigu.boot;
 
 import com.atguigu.boot.bean.Person;
+import com.atguigu.boot.bean.Student;
 import com.atguigu.boot.bean.Teacher;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -52,5 +53,9 @@ public class MainApplication {
         }
         var teacher = ioc.getBean(Teacher.class);
         System.out.println(teacher);
+
+        System.out.println("-------------");
+        Student student = ioc.getBean(Student.class);
+        System.out.println(student);
     }
 }

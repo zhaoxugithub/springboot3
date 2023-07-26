@@ -67,8 +67,6 @@ public class Boot306FeaturesApplication {
 //
 //        //2、SpringApplication 运行起来
 //        application.run(args);
-
-
         //================2、Builder方式构建 SpringApplication； 通过FluentAPI进行设置
         ConfigurableApplicationContext context = new SpringApplicationBuilder()
                 .main(Boot306FeaturesApplication.class) //各种参数均可设置
@@ -79,40 +77,27 @@ public class Boot306FeaturesApplication {
 //                .listeners(null)
                 .run(args);
 
-
-
         try {
             Cat cat = context.getBean(Cat.class);
             log.info("组件cat：{}",cat);
         }catch (Exception e){
-
         }
-
         try {
             Dog dog = context.getBean(Dog.class);
             log.info("组件dog：{}",dog);
         }catch (Exception e){
 
         }
-
-
-
         try {
             Pig pig = context.getBean(Pig.class);
             log.info("组件pig：{}",pig);
         }catch (Exception e){
 
         }
-
         try {
             Sheep sheep = context.getBean(Sheep.class);
             log.info("组件sheep：{}",sheep);
         }catch (Exception e){
-
         }
-
-
-
     }
-
 }
