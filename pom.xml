@@ -24,6 +24,7 @@
         <module>boot3-14-actuator</module>
         <module>boot3-15-aot-common</module>
         <module>boot3-16-aot-springboot</module>
+        <module>boot3-web-17-webflux</module>
     </modules>
 
 </project>

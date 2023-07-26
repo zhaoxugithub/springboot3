@@ -8,19 +8,20 @@
     <artifactId>boot3-01-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-<!--    所有springboot项目都必须继承自 spring-boot-starter-parent -->
+    <!--    所有springboot项目都必须继承自 spring-boot-starter-parent -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.0.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
-<!--        <mysql.version>8.0.31</mysql.version>-->
+        <!--        <mysql.version>8.0.31</mysql.version>-->
     </properties>
 
     <dependencies>
-<!--        web开发的场景启动器 -->
+        <!--        web开发的场景启动器 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -52,7 +53,7 @@
     </dependencies>
 
 
-<!--    SpringBoot应用打包插件-->
+    <!--    SpringBoot应用打包插件-->
     <build>
         <plugins>
             <plugin>
@@ -61,7 +62,6 @@
             </plugin>
         </plugins>
     </build>
-
 
 
 </project>
