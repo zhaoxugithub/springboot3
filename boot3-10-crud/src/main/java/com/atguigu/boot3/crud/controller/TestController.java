@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
+    private Integer count = 0;
+
     @Autowired
     private RobotController robotController;
 
@@ -24,5 +26,13 @@ public class TestController {
     public void test() {
         String s = robotController.sayHello();
         System.out.println(s);
+    }
+
+    @GetMapping("/per")
+    public Integer testPerformance() {
+        for (int i = 0; i < 1000000000; i++) {
+            count = count + 1;
+        }
+        return count;
     }
 }

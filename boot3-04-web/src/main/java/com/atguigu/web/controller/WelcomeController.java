@@ -85,7 +85,7 @@ public class WelcomeController {
 
         model.addAttribute("persons",list);
 
-//        int i = 10/0;
+       int i = 10/0;
         return "list";
     }
 

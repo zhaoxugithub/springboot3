@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootConfiguration
 public class AppConfig2 {
 
-    @ConditionalOnClass(name = "com.alibaba.druid.FastsqlException") // 放在方法级别，单独对这个方法进行注解判断。
+    @ConditionalOnClass(name = "com.alibaba.druidFa.stsqlException") // 放在方法级别，单独对这个方法进行注解判断。
     @Bean
     public Cat cat01() {
         return new Cat();

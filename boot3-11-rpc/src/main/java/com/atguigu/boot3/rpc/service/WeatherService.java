@@ -28,7 +28,6 @@ public class WeatherService {
         Mono<String> weather = weatherInterface.getWeather(city);
         return weather;
     }
-
     private static Mono<String> getByWebClient(String city) {
         //1、创建WebClient
         WebClient client = WebClient.create();
