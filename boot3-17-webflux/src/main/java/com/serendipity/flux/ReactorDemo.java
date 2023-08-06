@@ -22,7 +22,6 @@ public class ReactorDemo {
                 // 请求一个数据
                 this.subscription.request(1);
             }
-
             @Override
             public void onNext(Integer item) {
                 // 接受到一个数据，处理
@@ -32,7 +31,6 @@ public class ReactorDemo {
                 // 或者已经达到了目标，调用cancel告诉发布者不再接受数据了
                 // this.subscription.cancel()
             }
-
             @Override
             public void onError(Throwable throwable) {
                 // 出现了异常（例如处理数据的时候产生了异常）

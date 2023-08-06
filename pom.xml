@@ -26,5 +26,4 @@
         <module>boot3-16-aot-springboot</module>
         <module>boot3-17-webflux</module>
     </modules>
-
 </project>
