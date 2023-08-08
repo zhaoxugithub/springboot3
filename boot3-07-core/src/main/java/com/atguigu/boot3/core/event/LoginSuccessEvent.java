@@ -9,7 +9,6 @@ import org.springframework.context.ApplicationEvent;
  * @create 2023-04-24 18:51
  */
 public class LoginSuccessEvent  extends ApplicationEvent {
-
     /**
      *
      * @param source  代表是谁登录成了

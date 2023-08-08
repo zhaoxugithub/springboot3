@@ -20,14 +20,12 @@ import java.nio.charset.Charset;
  * @create 2023-04-12 20:41
  */
 public class MyYamlHttpMessageConverter extends AbstractHttpMessageConverter<Object> {
-
     private ObjectMapper objectMapper = null; // 把对象转成yaml
 
     public MyYamlHttpMessageConverter() {
         // 告诉SpringBoot这个MessageConverter支持哪种媒体类型  //媒体类型
         super(new MediaType("text", "yaml", Charset.forName("UTF-8")));
-        YAMLFactory factory = new YAMLFactory()
-                .disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
+        YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         this.objectMapper = new ObjectMapper(factory);
     }
 
@@ -48,6 +46,5 @@ public class MyYamlHttpMessageConverter extends AbstractHttpMessageConverter<Obj
         try (OutputStream os = outputMessage.getBody()) {
             this.objectMapper.writeValue(os, methodReturnValue);
         }
-
     }
 }

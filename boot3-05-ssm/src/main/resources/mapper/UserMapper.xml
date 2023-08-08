@@ -4,7 +4,6 @@
     <!--    接口的全类名和namespace的值是一一对应的
             select id,login_name loginName,nick_name nickName,passwd from t_user where id=#{id}
     -->
-
     <select id="getUserById" resultType="com.atguigu.boot3.ssm.bean.TUser">
         select *
         from t_user

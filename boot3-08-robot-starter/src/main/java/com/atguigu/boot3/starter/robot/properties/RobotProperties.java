@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class RobotProperties {
-
     private String name;
     private String age;
     private String email;

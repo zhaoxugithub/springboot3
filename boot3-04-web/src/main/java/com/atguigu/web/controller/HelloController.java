@@ -22,7 +22,6 @@ import java.util.UUID;
 @Slf4j
 @RestController
 public class HelloController {
-
     /**
      * 默认使用新版 PathPatternParser 进行路径匹配
      * 不能匹配 ** 在中间的情况，剩下的和 antPathMatcher语法兼容
@@ -33,7 +32,6 @@ public class HelloController {
      */
     @GetMapping("/a*/b?/**/{p1:[a-f]+}/**")
     public String hello(HttpServletRequest request, @PathVariable("p1") String path) {
-
         log.info("路径变量p1： {}", path);
         String uri = request.getRequestURI();
         return uri;
@@ -44,9 +42,11 @@ public class HelloController {
         Person person = new Person();
         person.setAge(19);
         person.setEmail("1111");
-        person.setId(UUID.randomUUID().getMostSignificantBits());
+        person.setId(UUID.randomUUID()
+                         .getMostSignificantBits());
         return person;
     }
+
     /**
      * 1、默认支持把对象写为json。因为默认web场景导入了jackson处理json的包;jackson-core
      * 2、jackson也支持把数据写为xml。导入xml相关依赖
@@ -68,7 +68,6 @@ public class HelloController {
 
     @GetMapping("/haha")
     public String haha(HttpServletRequest request) {
-
         Locale locale = request.getLocale();
         // 利用代码的方式获取国际化配置文件中指定的配置项的值
         String login = messageSource.getMessage("login", null, locale);
@@ -81,10 +80,8 @@ public class HelloController {
         person.setUserName("张三");
         person.setEmail("aaa@qq.com");
         person.setAge(18);
-
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory);
-
         String s = mapper.writeValueAsString(person);
         System.out.println(s);
     }

@@ -16,12 +16,10 @@ import java.util.concurrent.TimeUnit;
  */
 @WebServlet(name = "SyncServlet", urlPatterns = "/SyncServlet")
 public class SyncServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long t1 = System.currentTimeMillis();
         // 执行业务代码
         doSomeTing(request, response);
@@ -35,6 +33,7 @@ public class SyncServlet extends HttpServlet {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        response.getWriter().append("done");
+        response.getWriter()
+                .append("done");
     }
 }

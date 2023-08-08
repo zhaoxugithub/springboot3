@@ -12,13 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class RobotController {
-
     @Autowired
     RobotService robotService;
 
     @GetMapping("/robot/hello")
-    public String sayHello(){
-        String s = robotService.sayHello();
-        return s;
+    public String sayHello() {
+        return robotService.sayHello();
     }
 }

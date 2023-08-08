@@ -12,14 +12,11 @@ import org.springframework.kafka.config.TopicBuilder;
  */
 @Configuration
 public class AppKafkaConfiguration {
-
-
     @Bean
     public NewTopic topic1() {
         return TopicBuilder.name("thing")
-                .partitions(1)
-                .compact()
-                .build();
+                           .partitions(1)
+                           .compact()
+                           .build();
     }
-
 }

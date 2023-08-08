@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UserEntity {
-
     private String username;
     private String passwd;
 }

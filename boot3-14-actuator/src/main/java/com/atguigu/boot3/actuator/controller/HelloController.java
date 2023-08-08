@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class HelloController {
-
     @Autowired
-    MyHahaComponent myHahaComponent;
+    private MyHahaComponent myHahaComponent;
 
     @GetMapping("/hello")
-    public String hello(){
-        //业务调用
+    public String hello() {
+        // 业务调用
         myHahaComponent.hello();
         return "哈哈哈";
     }

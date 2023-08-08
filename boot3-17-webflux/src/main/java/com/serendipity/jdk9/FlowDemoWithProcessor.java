@@ -108,6 +108,7 @@ public class FlowDemoWithProcessor {
         // 正式环境 应该放 finally 或者使用 try-resouce 确保关闭
         publisher.close();
         // 主线程延迟停止, 否则数据没有消费就退出
-        Thread.currentThread().join(1000);
+        Thread.currentThread()
+              .join(1000);
     }
 }

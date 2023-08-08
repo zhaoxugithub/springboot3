@@ -13,9 +13,10 @@ import java.util.Map;
  * @create 2023-04-18 17:17
  */
 @Component("Aaaa")
-public class aaaa implements View {
+public class AAAA implements View {
     @Override
     public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        response.getWriter().write("aaaa");
+        response.getWriter()
+                .write("aaaa");
     }
 }

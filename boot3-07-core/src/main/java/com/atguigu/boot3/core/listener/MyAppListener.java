@@ -31,7 +31,6 @@ import java.time.Duration;
 public class MyAppListener implements SpringApplicationRunListener {
     @Override
     public void starting(ConfigurableBootstrapContext bootstrapContext) {
-
         System.out.println("=====starting=====正在启动======");
     }
 

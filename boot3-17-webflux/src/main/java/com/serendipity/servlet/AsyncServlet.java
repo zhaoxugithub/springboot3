@@ -16,18 +16,15 @@ import java.util.concurrent.TimeUnit;
 
 @WebServlet(name = "AsyncServlet", urlPatterns = "/AsyncServlet", asyncSupported = true)
 public class AsyncServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long t1 = System.currentTimeMillis();
         // 1.开启异步
         AsyncContext asyncContext = request.startAsync();
         // 2.把我们要执行的代码放到一个独立的线程中，多线程/线程池
-        CompletableFuture.runAsync(() ->
-                // 执行业务代码
+        CompletableFuture.runAsync(() ->// 执行业务代码
         {
             try {
                 doSomeTing(asyncContext, asyncContext.getRequest(), asyncContext.getResponse());
@@ -45,7 +42,8 @@ public class AsyncServlet extends HttpServlet {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        response.getWriter().append("async done");
+        response.getWriter()
+                .append("async done");
         // 3.业务代码处理完毕，通知结束
         asyncContext.complete();
     }
