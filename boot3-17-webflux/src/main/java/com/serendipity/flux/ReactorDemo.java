@@ -14,6 +14,7 @@ public class ReactorDemo {
         // 2. 定义订阅者
         Subscriber<Integer> subscriber = new Subscriber<>() {
             private Subscription subscription;
+
             @Override
             public void onSubscribe(Subscription subscription) {
                 // 保存订阅关系，需要用它来给发布者响应
