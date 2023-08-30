@@ -24,11 +24,16 @@ public class FluxTest {
         interval(Duration period)和 interval(Duration delay, Duration period)：创建一个包含了从 0 开始递增的 Long 对象的序列。
         其中包含的元素按照指定的间隔来发布。除了间隔时间之外，还可以指定起始元素发布之前的延迟时间。
          */
-        Flux.just("Hello", "World").subscribe(System.out::println);
-        Flux.fromArray(new Integer[]{1, 2, 3}).subscribe(System.out::println);
-        Flux.empty().subscribe(System.out::println);
-        Flux.range(1, 10).subscribe(System.out::println);
-        Flux.interval(Duration.of(10, ChronoUnit.SECONDS)).subscribe(System.out::println);
+        Flux.just("Hello", "World")
+            .subscribe(System.out::println);
+        Flux.fromArray(new Integer[]{1, 2, 3})
+            .subscribe(System.out::println);
+        Flux.empty()
+            .subscribe(System.out::println);
+        Flux.range(1, 10)
+            .subscribe(System.out::println);
+        Flux.interval(Duration.of(10, ChronoUnit.SECONDS))
+            .subscribe(System.out::println);
     }
 
     public int[] twoSum(int[] nums, int target) {

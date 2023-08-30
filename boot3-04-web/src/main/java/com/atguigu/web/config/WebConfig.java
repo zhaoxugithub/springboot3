@@ -13,5 +13,4 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //@EnableWebMvc  //禁用mvc的默认功能
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-
 }

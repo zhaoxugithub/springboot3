@@ -22,14 +22,12 @@ public class Boot307CoreApplication {
         application.run(args);
 //        SpringApplication.run(Boot307CoreApplication.class, args);
     }
-
     @Bean
     public ApplicationRunner applicationRunner() {
         return args -> {
             System.out.println("===ApplicationRunner 运行了.....");
         };
     }
-
     @Bean
     public CommandLineRunner commandLineRunner() {
         return args -> {

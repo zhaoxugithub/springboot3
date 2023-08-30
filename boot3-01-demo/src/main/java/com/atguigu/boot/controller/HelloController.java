@@ -16,19 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 //@Controller
 @RestController
 public class HelloController {
-
     @Autowired
     StringRedisTemplate redisTemplate;
-
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() {
         return "Hello,Spring Boot 3!";
     }
 
     @GetMapping("/incr")
-    public String incr(){
-        Long haha = redisTemplate.opsForValue().increment("haha");
-        return "增加后的值："+haha;
+    public String incr() {
+        Long haha = redisTemplate.opsForValue()
+                                 .increment("haha");
+        return "增加后的值：" + haha;
     }
-
 }

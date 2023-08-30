@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 public class Dog {
     private Long id;
     private String name;
-
     @Override
     public String toString() {
         return "Dog{" +

@@ -15,15 +15,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Service
 public class AService {
     public void a() {
-        //当前请求的路径
+        // 当前请求的路径
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-
-
-        //任意位置随时通过 RequestContextHolder 获取到当前请求和响应的信息
+        // 任意位置随时通过 RequestContextHolder 获取到当前请求和响应的信息
         HttpServletResponse response = attributes.getResponse();
         HttpServletRequest request = attributes.getRequest();
-
-
         String requestURI = request.getRequestURI();
     }
 }

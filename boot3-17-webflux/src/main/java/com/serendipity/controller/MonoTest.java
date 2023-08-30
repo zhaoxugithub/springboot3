@@ -15,10 +15,8 @@ import java.util.List;
  **/
 @SuppressWarnings("all")
 public class MonoTest {
-
     // 创建Mono （发布者）
     public static void monoCreate() {
-
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
         Mono<List<Integer>> just = Mono.just(list);
         Mono<Object> empty = Mono.empty();
@@ -29,6 +27,7 @@ public class MonoTest {
             return Mono.empty();
         });
     }
+
     public static void main(String[] args) {
     }
 }

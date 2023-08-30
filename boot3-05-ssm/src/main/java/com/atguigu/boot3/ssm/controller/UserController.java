@@ -14,19 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class UserController {
-
     @Autowired
-    UserMapper userMapper;
-
+    private UserMapper userMapper;
 
     /**
      * 返回User的json数据
+     *
      * @param id
      * @return
      */
     @GetMapping("/user/{id}")
-    public TUser getUser(@PathVariable("id") Long id){
-        TUser user = userMapper.getUserById(id);
-        return user;
+    public TUser getUser(@PathVariable("id") Long id) {
+        return userMapper.getUserById(id);
     }
 }

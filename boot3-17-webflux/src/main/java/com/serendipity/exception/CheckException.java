@@ -4,12 +4,10 @@ import lombok.Data;
 
 @Data
 public class CheckException extends RuntimeException {
-
     /**
      * 出错字段的名字
      */
     private String fieldName;
-
     /**
      * 出错字段的值
      */

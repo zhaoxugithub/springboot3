@@ -16,7 +16,6 @@ public class Pig {
     private Long id;
     private String name;
     private Integer age;
-
     @Override
     public String toString() {
         return "Pig{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + '}';

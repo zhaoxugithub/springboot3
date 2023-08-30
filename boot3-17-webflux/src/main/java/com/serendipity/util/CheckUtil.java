@@ -13,10 +13,12 @@ public class CheckUtil {
      * @param value
      */
     public static void checkName(String value) {
-        Stream.of(INVALID_NAMES).filter(name -> name.equalsIgnoreCase(value))
-                .findAny().ifPresent(name -> {
-                    throw new CheckException("name", value);
-                });
+        Stream.of(INVALID_NAMES)
+              .filter(name -> name.equalsIgnoreCase(value))
+              .findAny()
+              .ifPresent(name -> {
+                  throw new CheckException("name", value);
+              });
     }
 }
 

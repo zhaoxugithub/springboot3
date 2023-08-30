@@ -18,50 +18,41 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class LoginController {
-
     @Autowired
-    AccountService accountService;
-
+    private AccountService accountService;
     @Autowired
-    CouponService couponService;
-
+    private CouponService couponService;
     @Autowired
-    SysService sysService;
-
+    private SysService sysService;
     @Autowired
-    EventPublisher eventPublisher;
-
+    private EventPublisher eventPublisher;
 
     /**
      * 增加业务
+     *
      * @param username
      * @param passwd
      * @return
      */
     @GetMapping("/login")
-    public String login(@RequestParam("username") String username,
-                        @RequestParam("passwd")String passwd){
-        //业务处理登录
+    public String login(@RequestParam("username") String username, @RequestParam("passwd") String passwd) {
+        // 业务处理登录
         System.out.println("业务处理登录完成....");
-
-        //TODO 发送事件.
-        //1、创建事件信息
+        // TODO 发送事件.
+        // 1、创建事件信息
         LoginSuccessEvent event = new LoginSuccessEvent(new UserEntity(username, passwd));
-        //2、发送事件
+        // 2、发送事件
         eventPublisher.sendEvent(event);
-
-
-        //1、账户服务自动签到加积分
+        // 1、账户服务自动签到加积分
 //        accountService.addAccountScore(username);
 //        //2、优惠服务随机发放优惠券
 //        couponService.sendCoupon(username);
 //        //3、系统服务登记用户登录的信息
 //        sysService.recordLog(username);
-
-        //设计模式：对新增开放，对修改关闭
-        //xxx
-        //xxx
-        //xxx
-        return username+"登录成功";
+        // 设计模式：对新增开放，对修改关闭
+        // xxx
+        // xxx
+        // xxx
+        return username + "登录成功";
     }
 }

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 //@Profile("default")
 @Component
 public class Sheep {
-
     private Long id;
     private String name;
     private Integer age;
@@ -43,10 +42,6 @@ public class Sheep {
 
     @Override
     public String toString() {
-        return "Sheep{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        return "Sheep{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + '}';
     }
 }

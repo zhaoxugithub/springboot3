@@ -6,7 +6,6 @@ import reactor.core.publisher.Flux;
 import reactor.util.context.Context;
 
 public class ReactorDemo {
-
     public static void main(String[] args) {
         // reactor = jdk8 stream + jdk9 reactive stream
         // Mono 0-1个元素
@@ -15,6 +14,7 @@ public class ReactorDemo {
         // 2. 定义订阅者
         Subscriber<Integer> subscriber = new Subscriber<>() {
             private Subscription subscription;
+
             @Override
             public void onSubscribe(Subscription subscription) {
                 // 保存订阅关系，需要用它来给发布者响应
@@ -48,26 +48,27 @@ public class ReactorDemo {
             }
         };
         // 这里就是jdk8的stream
-        Flux.fromArray(strs).map(Integer::parseInt)
-                // 最终操作
-                // 这里就是jdk9的响应式流（reactive stream）
-                .subscribe(subscriber);
+        Flux.fromArray(strs)
+            .map(Integer::parseInt)
+            // 最终操作
+            // 这里就是jdk9的响应式流（reactive stream）
+            .subscribe(subscriber);
         // 另外一种写法
         // 创建一个空的上下文对象
         Context context = Context.empty();
         // 这里就是jdk8的stream
-        Flux.fromArray(strs).map(Integer::parseInt)
-                // 最终操作
-                // 这里就是jdk9的响应式流（reactive stream）
-                .subscribe(
-                        // 处理成功得到打印变量值
-                        item -> System.out.println("接收到数据：" + item),
-                        // 处理失败打印错误信息，相当于onError
-                        System.err::println,
-                        // 处理完成相当于onComplete
-                        () -> System.out.println("处理完了！"),
-                        // 这个参数我没弄懂是个啥,总之就是上下文
-                        context
-                );
+        Flux.fromArray(strs)
+            .map(Integer::parseInt)
+            // 最终操作
+            // 这里就是jdk9的响应式流（reactive stream）
+            .subscribe(
+                    // 处理成功得到打印变量值
+                    item -> System.out.println("接收到数据：" + item),
+                    // 处理失败打印错误信息，相当于onError
+                    System.err::println,
+                    // 处理完成相当于onComplete
+                    () -> System.out.println("处理完了！"),
+                    // 这个参数我没弄懂是个啥,总之就是上下文
+                    context);
     }
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RobotController {
     @Autowired
-    RobotService robotService;
+    private RobotService robotService;
 
     @GetMapping("/robot/hello")
     public String sayHello() {

@@ -20,14 +20,15 @@ public class ExceptionHandler implements WebExceptionHandler {
         // 设置响应头400
         response.setStatusCode(HttpStatus.BAD_REQUEST);
         // 设置返回类型
-        response.getHeaders().setContentType(MediaType.TEXT_PLAIN);
-
+        response.getHeaders()
+                .setContentType(MediaType.TEXT_PLAIN);
         // 异常信息
         String errorMsg = toStr(ex);
-
-        DataBuffer db = response.bufferFactory().wrap(errorMsg.getBytes());
+        DataBuffer db = response.bufferFactory()
+                                .wrap(errorMsg.getBytes());
         return response.writeWith(Mono.just(db));
     }
+
     private String toStr(Throwable ex) {
         // 已知异常
         if (ex instanceof CheckException) {
