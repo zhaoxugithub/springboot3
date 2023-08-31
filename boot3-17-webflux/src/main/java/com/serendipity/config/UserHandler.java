@@ -25,8 +25,8 @@ public class UserHandler {
      */
     public Mono<ServerResponse> getAllUser(ServerRequest request) {
         return ServerResponse.ok()
-                             .contentType(MediaType.APPLICATION_JSON)
-                             .body(this.userRepository.findAll(), User.class);
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(this.userRepository.findAll(), User.class);
     }
 
     /**
@@ -44,8 +44,8 @@ public class UserHandler {
             CheckUtil.checkName(u.getName());
 
             return ServerResponse.ok()
-                                 .contentType(MediaType.APPLICATION_JSON)
-                                 .body(this.userRepository.save(u), User.class);
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(this.userRepository.save(u), User.class);
         });
     }
 
@@ -58,10 +58,10 @@ public class UserHandler {
     public Mono<ServerResponse> deleteUserById(ServerRequest request) {
         String id = request.pathVariable("id");
         return this.userRepository.findById(id)
-                                  .flatMap(user -> this.userRepository.delete(user)
-                                                                      .then(ServerResponse.ok()
-                                                                                          .build()))
-                                  .switchIfEmpty(ServerResponse.notFound()
-                                                               .build());
+                .flatMap(user -> this.userRepository.delete(user)
+                        .then(ServerResponse.ok()
+                                .build()))
+                .switchIfEmpty(ServerResponse.notFound()
+                        .build());
     }
 }

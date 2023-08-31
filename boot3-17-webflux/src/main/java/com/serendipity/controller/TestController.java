@@ -53,14 +53,14 @@ public class TestController {
     private Flux<String> get3() {
         log.info("get3 start");
         Flux<String> result = Flux.fromStream(IntStream.range(1, 5)
-                                                       .mapToObj(i -> {
-                                                           try {
-                                                               TimeUnit.SECONDS.sleep(1);
-                                                           } catch (InterruptedException e) {
-                                                               e.printStackTrace();
-                                                           }
-                                                           return "flux data--" + i;
-                                                       }));
+                .mapToObj(i -> {
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    return "flux data--" + i;
+                }));
         log.info("get3 end");
         return result;
     }

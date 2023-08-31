@@ -23,15 +23,15 @@ public class WeatherController {
     ExpressApi expressApi;
 
     @GetMapping("/weather")
-    public Mono<String> weather(@RequestParam("city") String city){
-        //查询天气
+    public Mono<String> weather(@RequestParam("city") String city) {
+        // 查询天气
         Mono<String> weather = weatherService.weather(city);
         return weather;
     }
 
     @GetMapping("/express")
-    public Mono<String> express(@RequestParam("number") String number){
-        //获取物流
+    public Mono<String> express(@RequestParam("number") String number) {
+        // 获取物流
         return expressApi.getExpress(number);
     }
 }

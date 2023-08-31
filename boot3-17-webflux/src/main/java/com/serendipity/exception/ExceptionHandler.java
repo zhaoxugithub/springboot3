@@ -25,7 +25,7 @@ public class ExceptionHandler implements WebExceptionHandler {
         // 异常信息
         String errorMsg = toStr(ex);
         DataBuffer db = response.bufferFactory()
-                                .wrap(errorMsg.getBytes());
+                .wrap(errorMsg.getBytes());
         return response.writeWith(Mono.just(db));
     }
 

@@ -33,7 +33,7 @@ public class UserBizHandler {
         Person person = new Person(1L, "哈哈", "aa@qq.com", 18, "admin");
         // 构造响应
         return ServerResponse.ok()
-                             .body(person);
+                .body(person);
     }
 
 
@@ -51,7 +51,7 @@ public class UserBizHandler {
 
         // 构造响应
         return ServerResponse.ok()
-                             .body(list); // 凡是body中的对象，就是以前@ResponseBody原理。利用HttpMessageConverter 写出为json
+                .body(list); // 凡是body中的对象，就是以前@ResponseBody原理。利用HttpMessageConverter 写出为json
     }
 
 
@@ -66,7 +66,7 @@ public class UserBizHandler {
         Person body = request.body(Person.class);
         log.info("保存用户信息：{}", body);
         return ServerResponse.ok()
-                             .build();
+                .build();
     }
 
     /**
@@ -79,7 +79,7 @@ public class UserBizHandler {
         Person body = request.body(Person.class);
         log.info("保存用户信息更新: {}", body);
         return ServerResponse.ok()
-                             .build();
+                .build();
     }
 
     /**
@@ -92,6 +92,6 @@ public class UserBizHandler {
         String id = request.pathVariable("id");
         log.info("删除【{}】用户信息", id);
         return ServerResponse.ok()
-                             .build();
+                .build();
     }
 }

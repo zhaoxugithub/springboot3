@@ -15,8 +15,8 @@ public class AppKafkaConfiguration {
     @Bean
     public NewTopic topic1() {
         return TopicBuilder.name("thing")
-                           .partitions(1)
-                           .compact()
-                           .build();
+                .partitions(1)
+                .compact()
+                .build();
     }
 }

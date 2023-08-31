@@ -20,10 +20,10 @@ public class ReactorDemo06 {
     public void test01() throws InterruptedException {
         // sample
         Flux.range(1, 100)
-            .delayElements(Duration.ofMillis(10))
-            // 每隔100s采样一次数据
-            .sample(Duration.ofMillis(100))
-            .subscribe(System.out::println);
+                .delayElements(Duration.ofMillis(10))
+                // 每隔100s采样一次数据
+                .sample(Duration.ofMillis(100))
+                .subscribe(System.out::println);
         Thread.sleep(10 * 1000);
     }
 
@@ -32,10 +32,10 @@ public class ReactorDemo06 {
         // sampleTimeout
         Random random = new Random();
         Flux.range(1, 100)
-            .delayElements(Duration.ofMillis(10))
-            // 每隔100s采样一次数据
-            .sampleTimeout(item -> Mono.delay(Duration.ofMillis(random.nextInt(100) + 50)), 20)
-            .subscribe(System.out::println);
+                .delayElements(Duration.ofMillis(10))
+                // 每隔100s采样一次数据
+                .sampleTimeout(item -> Mono.delay(Duration.ofMillis(random.nextInt(100) + 50)), 20)
+                .subscribe(System.out::println);
         Thread.sleep(10 * 1000);
     }
 }

@@ -5,7 +5,6 @@
 server:
   port: 9999
 
-
 spring:
   servlet:
     multipart:
@@ -16,12 +15,10 @@ spring:
       port: 6379
       password: 123456
 
-
 tea:
   name: "t1"
   age: "20"
   type: "math"
-
 
 --- #下边是一个单独文档
 a: b

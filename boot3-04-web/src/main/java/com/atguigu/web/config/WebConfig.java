@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @Description
  * @create 2023-04-18 17:04
  */
-//全面接管SpringMVC
+// 全面接管SpringMVC
 //@EnableWebMvc  //禁用mvc的默认功能
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

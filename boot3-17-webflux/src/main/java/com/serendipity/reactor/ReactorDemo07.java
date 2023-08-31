@@ -17,33 +17,33 @@ public class ReactorDemo07 {
     @Test
     public void test01() {
         Flux.range(1, 100)
-            // 10个一组
-            .buffer(10)
-            .subscribe(System.out::println);
+                // 10个一组
+                .buffer(10)
+                .subscribe(System.out::println);
     }
 
     @Test
     public void test02() {
         Flux.range(101, 20)
-            // 当达到一定条件开始分组
-            .windowUntil(item -> item % 10 == 0)
-            .subscribe(window -> window.collectList()
-                                       .subscribe(System.out::println));
+                // 当达到一定条件开始分组
+                .windowUntil(item -> item % 10 == 0)
+                .subscribe(window -> window.collectList()
+                        .subscribe(System.out::println));
     }
 
     @Test
     public void test03() {
         Flux.range(1, 7)
-            .groupBy(item -> item % 2 == 0 ? "j" : "o")
-            .subscribe(fg -> fg.scan(new ArrayList<>(), (list, element) -> {
-                                   list.add(element);
-                                   if (list.size() > 2) {
-                                       list.remove(0);
-                                   }
-                                   return list;
-                               })
-                               .filter(list -> !list.isEmpty())
-                               .subscribe(item -> System.out.println(fg.key() + "--" + item)));
+                .groupBy(item -> item % 2 == 0 ? "j" : "o")
+                .subscribe(fg -> fg.scan(new ArrayList<>(), (list, element) -> {
+                            list.add(element);
+                            if (list.size() > 2) {
+                                list.remove(0);
+                            }
+                            return list;
+                        })
+                        .filter(list -> !list.isEmpty())
+                        .subscribe(item -> System.out.println(fg.key() + "--" + item)));
 
     }
 }

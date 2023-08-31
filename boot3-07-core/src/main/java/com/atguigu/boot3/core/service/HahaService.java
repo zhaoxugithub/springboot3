@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class HahaService {
     @EventListener
-    public void onEvent(LoginSuccessEvent event){
-        System.out.println("=== HahaService === 感知到事件"+event);
-        //调用业务
+    public void onEvent(LoginSuccessEvent event) {
+        System.out.println("=== HahaService === 感知到事件" + event);
+        // 调用业务
     }
 }

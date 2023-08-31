@@ -14,11 +14,11 @@ public class CheckUtil {
      */
     public static void checkName(String value) {
         Stream.of(INVALID_NAMES)
-              .filter(name -> name.equalsIgnoreCase(value))
-              .findAny()
-              .ifPresent(name -> {
-                  throw new CheckException("name", value);
-              });
+                .filter(name -> name.equalsIgnoreCase(value))
+                .findAny()
+                .ifPresent(name -> {
+                    throw new CheckException("name", value);
+                });
     }
 }
 

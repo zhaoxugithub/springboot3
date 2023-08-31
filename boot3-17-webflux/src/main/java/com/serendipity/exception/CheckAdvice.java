@@ -33,9 +33,9 @@ public class CheckAdvice {
      */
     private String toStr(WebExchangeBindException ex) {
         return ex.getFieldErrors()
-                 .stream()
-                 .map(e -> e.getField() + ":" + e.getDefaultMessage())
-                 .reduce((s1, s2) -> s1 + "\n" + s2)
-                 .orElse("");
+                .stream()
+                .map(e -> e.getField() + ":" + e.getDefaultMessage())
+                .reduce((s1, s2) -> s1 + "\n" + s2)
+                .orElse("");
     }
 }

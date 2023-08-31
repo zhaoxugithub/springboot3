@@ -18,5 +18,4 @@ public class Boot314ActuatorApplication {
     public static void main(String[] args) {
         SpringApplication.run(Boot314ActuatorApplication.class, args);
     }
-
 }

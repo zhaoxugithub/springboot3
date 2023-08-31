@@ -16,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class DeptService {
     Map<Long, Dept> data = new ConcurrentHashMap<Long, Dept>();
+
     public void deleteDept(Long id) {
         data.remove(id);
     }

@@ -24,27 +24,27 @@ public class ReactorDemo05 {
     @Test
     public void test01() {
         Flux.just(Arrays.asList(1, 2, 3), Arrays.asList("a", "b", "c", "d"), Arrays.asList(7, 8, 9))
-            .doOnNext(System.out::println)
-            .flatMap(item -> Flux.fromIterable(item)
-                                 .doOnSubscribe(subscription -> {
-                                     System.out.println(subscription);
-                                     System.out.println("已经订阅");
-                                 }))
-            .subscribe(System.out::println);
+                .doOnNext(System.out::println)
+                .flatMap(item -> Flux.fromIterable(item)
+                        .doOnSubscribe(subscription -> {
+                            System.out.println(subscription);
+                            System.out.println("已经订阅");
+                        }))
+                .subscribe(System.out::println);
     }
 
     @Test
     public void test02() throws InterruptedException {
         Random random = new Random();
         Flux.just(Arrays.asList(1, 2, 3), Arrays.asList("a", "b", "c", "d"), Arrays.asList(7, 8, 9))
-            .doOnNext(System.out::println)
-            .flatMap(item -> Flux.fromIterable(item)
-                                 .doOnSubscribe(subscription -> {
-                                     System.out.println(subscription);
-                                     System.out.println("已经订阅");
-                                 }))
-            .delayElements(Duration.ofMillis(random.nextInt(100) + 500))
-            .subscribe(System.out::println);
+                .doOnNext(System.out::println)
+                .flatMap(item -> Flux.fromIterable(item)
+                        .doOnSubscribe(subscription -> {
+                            System.out.println(subscription);
+                            System.out.println("已经订阅");
+                        }))
+                .delayElements(Duration.ofMillis(random.nextInt(100) + 500))
+                .subscribe(System.out::println);
         Thread.sleep(10 * 1000);
     }
 
@@ -53,14 +53,14 @@ public class ReactorDemo05 {
         // concatMap
         Random random = new Random();
         Flux.just(Arrays.asList(1, 2, 3), Arrays.asList("a", "b", "c", "d"), Arrays.asList(7, 8, 9))
-            .doOnNext(System.out::println)
-            .concatMap(item -> Flux.fromIterable(item)
-                                   .doOnSubscribe(subscription -> {
-                                       System.out.println(subscription);
-                                       System.out.println("已经订阅");
-                                   }))
-            .delayElements(Duration.ofMillis(random.nextInt(100) + 100))
-            .subscribe(System.out::println);
+                .doOnNext(System.out::println)
+                .concatMap(item -> Flux.fromIterable(item)
+                        .doOnSubscribe(subscription -> {
+                            System.out.println(subscription);
+                            System.out.println("已经订阅");
+                        }))
+                .delayElements(Duration.ofMillis(random.nextInt(100) + 100))
+                .subscribe(System.out::println);
         Thread.sleep(10 * 1000);
     }
 
@@ -69,14 +69,14 @@ public class ReactorDemo05 {
         // flapMapSequential //内部排序输出
         Random random = new Random();
         Flux.just(Arrays.asList(1, 2, 3), Arrays.asList("a", "b", "c", "d"), Arrays.asList(7, 8, 9))
-            .doOnNext(System.out::println)
-            .flatMapSequential(item -> Flux.fromIterable(item)
-                                   .doOnSubscribe(subscription -> {
-                                       System.out.println(subscription);
-                                       System.out.println("已经订阅");
-                                   }))
-            .delayElements(Duration.ofMillis(random.nextInt(100) + 100))
-            .subscribe(System.out::println);
+                .doOnNext(System.out::println)
+                .flatMapSequential(item -> Flux.fromIterable(item)
+                        .doOnSubscribe(subscription -> {
+                            System.out.println(subscription);
+                            System.out.println("已经订阅");
+                        }))
+                .delayElements(Duration.ofMillis(random.nextInt(100) + 100))
+                .subscribe(System.out::println);
         Thread.sleep(10 * 1000);
     }
 }

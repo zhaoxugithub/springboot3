@@ -18,18 +18,14 @@ import java.util.Optional;
  * Version 1.0
  **/
 public class ReactorDemo01 {
-
     @Test
     public void test01() {
         Flux<String> just = Flux.just("hello", "everybody");
         just.subscribe(System.out::println);
-
         Flux<String> stringFlux = Flux.fromArray(new String[]{"1", "2", "3"});
         stringFlux.subscribe(System.out::println);
-
         Flux<Integer> integerFlux = Flux.fromIterable(Arrays.asList(1, 2, 3, 4, 5));
         integerFlux.subscribe(System.out::println);
-
         Flux<Integer> range = Flux.range(1000, 5);
         range.subscribe(System.out::println);
     }
@@ -38,10 +34,8 @@ public class ReactorDemo01 {
     public void test02() {
         Mono<String> hello = Mono.just("hello");
         hello.subscribe(System.out::println);
-
         Mono<Object> empty = Mono.empty();
         empty.subscribe(System.out::println);
-
         Mono<Object> objectMono = Mono.justOrEmpty(Optional.empty());
         objectMono.subscribe(System.out::println);
     }
@@ -50,20 +44,19 @@ public class ReactorDemo01 {
     public void test03() {
         // Flux 和 Mono 使用from(Publish<T> p) 工厂方法
         Flux.from(new Publisher<Object>() {
-                @Override
-                public void subscribe(Subscriber<? super Object> s) {
-                    for (int i = 0; i < 10; i++) {
-                        s.onNext("hello" + i);
+                    @Override
+                    public void subscribe(Subscriber<? super Object> s) {
+                        for (int i = 0; i < 10; i++) {
+                            s.onNext("hello" + i);
+                        }
+                        s.onComplete();
                     }
-                    s.onComplete();
-                }
-            })
-            .subscribe(System.out::println, System.err::println, () -> System.out.println("处理结束"));
+                })
+                .subscribe(System.out::println, System.err::println, () -> System.out.println("处理结束"));
     }
 
     @Test
     public void test04() {
-
         // defer 工厂创建序列(在订阅式决定其行为)
         class A {
             boolean isValidValue(String value) {
@@ -88,14 +81,13 @@ public class ReactorDemo01 {
                 return Mono.defer(() -> isValidValue(value) ? Mono.fromCallable(() -> getData(value)) : Mono.error(new RuntimeException()));
             }
         }
-
         A a = new A();
         // 这个不需要subscribe 就会执行isValidValue
         a.requestData("zs");
         // Mono.defer 除非subscribe才会执行isValidValue
         a.requestMonoData("sa");
         a.requestMonoData("da")
-         .subscribe();
+                .subscribe();
     }
 
     @Test
@@ -160,8 +152,7 @@ public class ReactorDemo01 {
             public void onNext(String s) {
                 System.out.println("onNext:" + s);
                 System.out.println("request 1 more ");
-
-                //每次获取一个元素
+                // 每次获取一个元素
                 // 如果注释掉这个方法,表示订阅者消费完当前这个数据,后续就不继续执行了
                 // this.subscription.request(1);
             }

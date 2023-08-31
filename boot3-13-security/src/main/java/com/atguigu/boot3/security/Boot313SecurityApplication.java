@@ -22,5 +22,4 @@ public class Boot313SecurityApplication {
     public static void main(String[] args) {
         SpringApplication.run(Boot313SecurityApplication.class, args);
     }
-
 }

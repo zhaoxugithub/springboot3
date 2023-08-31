@@ -17,7 +17,6 @@ public class FlowDemo {
         // 2. 定义订阅者
         Flow.Subscriber<Integer> subscriber = new Flow.Subscriber<>() {
             private Flow.Subscription subscription;
-
             @Override
             public void onSubscribe(Flow.Subscription subscription) {
                 // 保存订阅关系，需要用它来给发布者响应

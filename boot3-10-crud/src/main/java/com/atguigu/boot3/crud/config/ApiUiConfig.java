@@ -18,20 +18,22 @@ public class ApiUiConfig {
 
     /**
      * 分组设置
+     *
      * @return
      */
     @Bean
     public GroupedOpenApi empApi() {
         return GroupedOpenApi.builder()
                 .group("员工管理")
-                .pathsToMatch("/emp/**","/emps")
+                .pathsToMatch("/emp/**", "/emps")
                 .build();
     }
+
     @Bean
     public GroupedOpenApi deptApi() {
         return GroupedOpenApi.builder()
                 .group("部门管理")
-                .pathsToMatch("/dept/**","/depts")
+                .pathsToMatch("/dept/**", "/depts")
                 .build();
     }
 

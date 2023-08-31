@@ -40,9 +40,8 @@ public class AppSecurityConfiguration {
         // 3、表单登录功能：开启默认表单登录功能；Spring Security提供默认登录页
         http.formLogin(formLogin -> {
             formLogin.loginPage("/login")
-                     .permitAll(); // 自定义登录页位置，并且所有人都能访问
+                    .permitAll(); // 自定义登录页位置，并且所有人都能访问
         });
-
         return http.build();
     }
 
@@ -50,27 +49,27 @@ public class AppSecurityConfiguration {
         // 查询用户详情；
     UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         UserDetails zhangsan = User.withUsername("zhangsan")
-                                   .password(passwordEncoder.encode("123456")) // 使用密码加密器加密密码进行存储
-                                   .roles("admin", "hr")
-                                   .authorities("file_read", "file_write")
-                                   .build();
+                .password(passwordEncoder.encode("123456")) // 使用密码加密器加密密码进行存储
+                .roles("admin", "hr")
+                .authorities("file_read", "file_write")
+                .build();
         UserDetails lisi = User.withUsername("lisi")
-                               .password(passwordEncoder.encode("123456"))
-                               .roles("hr")
-                               .authorities("file_read")
-                               .build();
+                .password(passwordEncoder.encode("123456"))
+                .roles("hr")
+                .authorities("file_read")
+                .build();
         UserDetails wangwu = User.withUsername("wangwu")
-                                 .password(passwordEncoder.encode("123456"))
-                                 .roles("admin")
-                                 .authorities("file_write", "world_exec")
-                                 .build();
+                .password(passwordEncoder.encode("123456"))
+                .roles("admin")
+                .authorities("file_write", "world_exec")
+                .build();
         // 默认内存中保存所有用户信息
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager(zhangsan, lisi, wangwu);
         return manager;
     }
 
     @Bean
-// 密码加密器
+        // 密码加密器
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }

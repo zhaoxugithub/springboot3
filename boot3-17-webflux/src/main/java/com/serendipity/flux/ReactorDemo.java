@@ -49,26 +49,26 @@ public class ReactorDemo {
         };
         // 这里就是jdk8的stream
         Flux.fromArray(strs)
-            .map(Integer::parseInt)
-            // 最终操作
-            // 这里就是jdk9的响应式流（reactive stream）
-            .subscribe(subscriber);
+                .map(Integer::parseInt)
+                // 最终操作
+                // 这里就是jdk9的响应式流（reactive stream）
+                .subscribe(subscriber);
         // 另外一种写法
         // 创建一个空的上下文对象
         Context context = Context.empty();
         // 这里就是jdk8的stream
         Flux.fromArray(strs)
-            .map(Integer::parseInt)
-            // 最终操作
-            // 这里就是jdk9的响应式流（reactive stream）
-            .subscribe(
-                    // 处理成功得到打印变量值
-                    item -> System.out.println("接收到数据：" + item),
-                    // 处理失败打印错误信息，相当于onError
-                    System.err::println,
-                    // 处理完成相当于onComplete
-                    () -> System.out.println("处理完了！"),
-                    // 这个参数我没弄懂是个啥,总之就是上下文
-                    context);
+                .map(Integer::parseInt)
+                // 最终操作
+                // 这里就是jdk9的响应式流（reactive stream）
+                .subscribe(
+                        // 处理成功得到打印变量值
+                        item -> System.out.println("接收到数据：" + item),
+                        // 处理失败打印错误信息，相当于onError
+                        System.err::println,
+                        // 处理完成相当于onComplete
+                        () -> System.out.println("处理完了！"),
+                        // 这个参数我没弄懂是个啥,总之就是上下文
+                        context);
     }
 }

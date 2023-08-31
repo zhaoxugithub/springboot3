@@ -13,5 +13,4 @@ public class TUser {
     private String loginName;
     private String nickName;
     private String passwd;
-
 }

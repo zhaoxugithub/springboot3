@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @Description
  * @create 2023-04-27 20:00
  */
-@ConfigurationProperties(prefix = "robot")  //此属性类和配置文件指定前缀绑定
+@ConfigurationProperties(prefix = "robot")  // 此属性类和配置文件指定前缀绑定
 @Component
 @Data
 public class RobotProperties {

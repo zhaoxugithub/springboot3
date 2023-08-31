@@ -17,5 +17,4 @@ public class Boot305SsmApplication {
     public static void main(String[] args) {
         SpringApplication.run(Boot305SsmApplication.class, args);
     }
-
 }

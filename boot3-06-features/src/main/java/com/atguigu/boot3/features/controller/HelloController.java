@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-
     @Value("${haha:啊啊啊啊}")
     String haha;
 
     @GetMapping("/haha")
-    public String haha(){
+    public String haha() {
         return haha;
     }
 }

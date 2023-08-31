@@ -15,7 +15,6 @@ class MyProcessor extends SubmissionPublisher<String> implements Flow.Processor<
     public void onSubscribe(Flow.Subscription subscription) {
         // 保存订阅关系, 需要用它来给发布者响应
         this.subscription = subscription;
-
         // 请求一个数据
         this.subscription.request(1);
     }
@@ -39,7 +38,6 @@ class MyProcessor extends SubmissionPublisher<String> implements Flow.Processor<
     public void onError(Throwable throwable) {
         // 出现了异常(例如处理数据的时候产生了异常)
         throwable.printStackTrace();
-
         // 我们可以告诉发布者, 后面不接受数据了
         this.subscription.cancel();
     }
@@ -91,7 +89,6 @@ public class FlowDemoWithProcessor {
                 // 我们可以告诉发布者, 后面不接受数据了
                 this.subscription.cancel();
             }
-
             @Override
             public void onComplete() {
                 // 全部数据处理完了(发布者关闭了)
@@ -109,6 +106,6 @@ public class FlowDemoWithProcessor {
         publisher.close();
         // 主线程延迟停止, 否则数据没有消费就退出
         Thread.currentThread()
-              .join(1000);
+                .join(1000);
     }
 }

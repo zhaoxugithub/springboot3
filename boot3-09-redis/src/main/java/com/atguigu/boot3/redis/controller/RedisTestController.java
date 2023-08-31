@@ -20,33 +20,33 @@ public class RedisTestController {
     @Autowired
     StringRedisTemplate stringRedisTemplate;
 
-    //为了后来系统的兼容性，应该所有对象都是以json的方式进行保存
-    @Autowired //如果给redis中保存数据会使用默认的序列化机制，导致redis中保存的对象不可视
-    RedisTemplate<Object, Object>  redisTemplate;
+    // 为了后来系统的兼容性，应该所有对象都是以json的方式进行保存
+    @Autowired // 如果给redis中保存数据会使用默认的序列化机制，导致redis中保存的对象不可视
+            RedisTemplate<Object, Object> redisTemplate;
 
     @GetMapping("/count")
-    public String count(){
+    public String count() {
         Long hello = stringRedisTemplate.opsForValue().increment("hello");
-        //常见数据类型  k: v value可以有很多类型
-        //string： 普通字符串 ： redisTemplate.opsForValue()
-        //list:    列表：       redisTemplate.opsForList()
-        //set:     集合:       redisTemplate.opsForSet()
-        //zset:    有序集合:    redisTemplate.opsForZSet()
-        //hash：   map结构：    redisTemplate.opsForHash()
-        return "访问了【"+hello+"】次";
+        // 常见数据类型  k: v value可以有很多类型
+        // string： 普通字符串 ： redisTemplate.opsForValue()
+        // list:    列表：       redisTemplate.opsForList()
+        // set:     集合:       redisTemplate.opsForSet()
+        // zset:    有序集合:    redisTemplate.opsForZSet()
+        // hash：   map结构：    redisTemplate.opsForHash()
+        return "访问了【" + hello + "】次";
     }
 
 
     @GetMapping("/person/save")
-    public String savePerson(){
-        Person person = new Person(1L,"张三",18,new Date());
-        //1、序列化： 对象转为字符串方式
-        redisTemplate.opsForValue().set("person",person);
+    public String savePerson() {
+        Person person = new Person(1L, "张三", 18, new Date());
+        // 1、序列化： 对象转为字符串方式
+        redisTemplate.opsForValue().set("person", person);
         return "ok";
     }
 
     @GetMapping("/person/get")
-    public Person getPerson(){
+    public Person getPerson() {
         Person person = (Person) redisTemplate.opsForValue().get("person");
         return person;
     }
