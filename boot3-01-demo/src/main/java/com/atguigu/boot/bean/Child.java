@@ -15,5 +15,8 @@ public class Child {
     private String name;
     private Integer age;
     private Date birthDay;
-    private List<String> text; // 数组
+    /**
+     * 数组
+     */
+    private List<String> text;
 }

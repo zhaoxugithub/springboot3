@@ -9,7 +9,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Author 11931
  * Date 2023-07-11:23:47
  * Version 1.0
- **/
+ *
+ * @author 11931
+ */
 @Data
 @ConfigurationProperties(prefix = "tea")
 public class Teacher {
@@ -19,10 +21,6 @@ public class Teacher {
 
     @Override
     public String toString() {
-        return "Teacher{" +
-                "name='" + name + '\'' +
-                ", age='" + age + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return "Teacher{" + "name='" + name + '\'' + ", age='" + age + '\'' + ", type='" + type + '\'' + '}';
     }
 }

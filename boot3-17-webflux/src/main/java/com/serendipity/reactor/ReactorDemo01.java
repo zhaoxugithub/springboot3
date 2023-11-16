@@ -1,7 +1,6 @@
 package com.serendipity.reactor;
 
 import org.junit.Test;
-import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import reactor.core.publisher.Flux;
@@ -43,16 +42,13 @@ public class ReactorDemo01 {
     @Test
     public void test03() {
         // Flux 和 Mono 使用from(Publish<T> p) 工厂方法
-        Flux.from(new Publisher<Object>() {
-                    @Override
-                    public void subscribe(Subscriber<? super Object> s) {
-                        for (int i = 0; i < 10; i++) {
-                            s.onNext("hello" + i);
-                        }
-                        s.onComplete();
-                    }
-                })
-                .subscribe(System.out::println, System.err::println, () -> System.out.println("处理结束"));
+        Flux.from(s -> {
+                for (int i = 0; i < 10; i++) {
+                    s.onNext("hello" + i);
+                }
+                s.onComplete();
+            })
+            .subscribe(System.out::println, System.err::println, () -> System.out.println("处理结束"));
     }
 
     @Test
@@ -87,7 +83,7 @@ public class ReactorDemo01 {
         // Mono.defer 除非subscribe才会执行isValidValue
         a.requestMonoData("sa");
         a.requestMonoData("da")
-                .subscribe();
+         .subscribe();
     }
 
     @Test
@@ -167,7 +163,6 @@ public class ReactorDemo01 {
                 System.out.println("onComplete");
             }
         };
-
         Flux<String> just = Flux.just("a", "b", "c", "d");
         just.subscribe(onComplete);
     }

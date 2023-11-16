@@ -20,7 +20,7 @@ public class AllRouters {
                         .route(RequestPredicates.GET("/"), userHandler::getAllUser)
                         // 创建用户
                         .andRoute(RequestPredicates.POST("/")
-                                .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), userHandler::createUser)
+                                                   .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), userHandler::createUser)
                         // 删除用户
                         .andRoute(RequestPredicates.DELETE("/{id}"), userHandler::deleteUserById));
     }

@@ -15,8 +15,6 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
  */
 @Configuration
 public class AppRedisConfiguration {
-
-
     /**
      * 允许Object类型的key-value，都可以被转为json进行存储。
      *

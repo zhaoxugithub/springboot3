@@ -68,13 +68,13 @@ public class UserController {
         // deleteById 没有返回值，不能判断数据是否存在
         // this.userRepository.deleteById(id);
         return this.userRepository.findById(id)
-                // 当你要操作数据，并返回一个Mono，这个时候使用flatMap
-                // 如果不操作数据，只是转换数据，使用map
-                .flatMap(user -> this.userRepository.delete(user)
-                        .then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK))))
+                                  // 当你要操作数据，并返回一个Mono，这个时候使用flatMap
+                                  // 如果不操作数据，只是转换数据，使用map
+                                  .flatMap(user -> this.userRepository.delete(user)
+                                                                      .then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK))))
 
-                // 如果user数据不存在
-                .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                                  // 如果user数据不存在
+                                  .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
     }
 
@@ -91,15 +91,15 @@ public class UserController {
         // 校验name字段
         CheckUtil.checkName(user.getName());
         return this.userRepository.findById(id)
-                // flatMap: 操作数据
-                .flatMap(u -> {
-                    u.setAge(user.getAge());
-                    u.setName(user.getName());
-                    return this.userRepository.save(u);
-                })
-                // map: 转换数据
-                .map(u -> new ResponseEntity<>(u, HttpStatus.OK))
-                .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                                  // flatMap: 操作数据
+                                  .flatMap(u -> {
+                                      u.setAge(user.getAge());
+                                      u.setName(user.getName());
+                                      return this.userRepository.save(u);
+                                  })
+                                  // map: 转换数据
+                                  .map(u -> new ResponseEntity<>(u, HttpStatus.OK))
+                                  .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
 
@@ -113,8 +113,8 @@ public class UserController {
     @GetMapping("/{id}")
     public Mono<ResponseEntity<User>> findUser(@PathVariable("id") String id) {
         return this.userRepository.findById(id)
-                .map(u -> new ResponseEntity<>(u, HttpStatus.OK))
-                .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                                  .map(u -> new ResponseEntity<>(u, HttpStatus.OK))
+                                  .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     /**

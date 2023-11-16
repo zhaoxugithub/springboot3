@@ -22,23 +22,23 @@ public class ReactorDemo02 {
             .subscribe(System.out::println);
         // .subscribe(System.out::println);*/
         Flux.range(0, 10)
-                .map(item -> "hello everyone " + item)
-                .index()
-                .subscribe(item -> {
-                    // 只有调用了index()这个方法才能够item.getT1()
-                    Long t1 = item.getT1();
-                    String t2 = item.getT2();
-                    System.out.println("t1=" + t1 + ",t2=" + t2);
-                }, System.err::println, () -> System.out.println("over"));
+            .map(item -> "hello everyone " + item)
+            .index()
+            .subscribe(item -> {
+                // 只有调用了index()这个方法才能够item.getT1()
+                Long t1 = item.getT1();
+                String t2 = item.getT2();
+                System.out.println("t1=" + t1 + ",t2=" + t2);
+            }, System.err::println, () -> System.out.println("over"));
         Flux.range(0, 10)
-                .map(item -> "hello everyone " + item)
-                .timestamp()
-                .subscribe(item -> {
-                    // 只有调用了index()这个方法才能够item.getT1()
-                    Long t1 = item.getT1();
-                    String t2 = item.getT2();
-                    System.out.println("t1=" + t1 + ",t2=" + t2);
-                }, System.err::println, () -> System.out.println("over"));
+            .map(item -> "hello everyone " + item)
+            .timestamp()
+            .subscribe(item -> {
+                // 只有调用了index()这个方法才能够item.getT1()
+                Long t1 = item.getT1();
+                String t2 = item.getT2();
+                System.out.println("t1=" + t1 + ",t2=" + t2);
+            }, System.err::println, () -> System.out.println("over"));
     }
 
 
@@ -46,15 +46,15 @@ public class ReactorDemo02 {
     public void test02() throws InterruptedException {
         // 这里在产生第一个元素之前就会停顿1s
         Flux.interval(Duration.ofMillis(1000))
-                .map(item -> "hello " + item)
-                .doOnNext(System.out::println)
-                // 在第二条流来之后才能开始订阅
-                .skipUntilOther(Mono.just("start")
-                        .delayElement(Duration.ofSeconds(3)))
-                // 在第三条流来之后就停止订阅
-                .takeUntilOther(Mono.just("end")
-                        .delayElement(Duration.ofSeconds(6)))
-                .subscribe(item -> System.out.println("onNext: " + item), ex -> System.err.println("onError: " + ex), () -> System.out.println("onComplete"));
+            .map(item -> "hello " + item)
+            .doOnNext(System.out::println)
+            // 在第二条流来之后才能开始订阅
+            .skipUntilOther(Mono.just("start")
+                                .delayElement(Duration.ofSeconds(3)))
+            // 在第三条流来之后就停止订阅
+            .takeUntilOther(Mono.just("end")
+                                .delayElement(Duration.ofSeconds(6)))
+            .subscribe(item -> System.out.println("onNext: " + item), ex -> System.err.println("onError: " + ex), () -> System.out.println("onComplete"));
 
         Thread.sleep(1000 * 10);
     }
@@ -129,34 +129,34 @@ public class ReactorDemo02 {
     public void test04() {
         // repeat
         Flux.just(1, 2, 3)
-                // 实际上打印了4次,3次拷贝
-                .repeat(3)
-                .subscribe(System.out::println);
+            // 实际上打印了4次,3次拷贝
+            .repeat(3)
+            .subscribe(System.out::println);
     }
 
     @Test
     public void test05() {
         Flux.empty()
-                // 如果返回空的就赋值默认值
-                .defaultIfEmpty("hello")
-                .subscribe(System.out::println);
+            // 如果返回空的就赋值默认值
+            .defaultIfEmpty("hello")
+            .subscribe(System.out::println);
     }
 
     @Test
     public void test06() {
         // distinct 去重
         Flux.just(1, 2, 3, 4)
-                .repeat(3)
-                .distinct()
-                .subscribe(System.out::println);
+            .repeat(3)
+            .distinct()
+            .subscribe(System.out::println);
     }
 
     @Test
     public void test07() {
         // distinctUntilChanged
         Flux.just(1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 1, 1, 1, 2, 2, 2)
-                // 局部去重
-                .distinctUntilChanged()
-                .subscribe(System.out::print);
+            // 局部去重
+            .distinctUntilChanged()
+            .subscribe(System.out::print);
     }
 }

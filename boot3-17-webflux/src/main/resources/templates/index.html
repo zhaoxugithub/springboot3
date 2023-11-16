@@ -9,12 +9,10 @@
     // 初始化，参数为url
     // 依赖H5
     var sse = new EventSource("SSE")
-
     // 监听消息并打印
     sse.onmessage = function (evt) {
         console.log("message", evt.data, evt)
     }
-
     // 如果指定了事件标识需要用这种方式来进行监听事件流
     sse.addEventListener("me", function (evt) {
         console.log("me event", evt.data)

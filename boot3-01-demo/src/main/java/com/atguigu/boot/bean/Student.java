@@ -2,7 +2,6 @@ package com.atguigu.boot.bean;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 /**
  * ClassName Student
@@ -10,7 +9,9 @@ import org.springframework.stereotype.Component;
  * Author 11931
  * Date 2023-07-26:17:57
  * Version 1.0
- **/
+ *
+ * @author 11931
+ */
 
 @Data
 @ConfigurationProperties(prefix = "student")

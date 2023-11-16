@@ -15,13 +15,19 @@ public class HelloController {
     @GetMapping("/h/**")
     public String hello(String a, String b) {
         for (int i = 0; i < 1000; i++) {
-            log.trace("trace 日志.....");
-            log.debug("debug 日志.....");
+            log.trace(Thread.currentThread()
+                            .getName() + ":trace 日志.....");
+            log.debug(Thread.currentThread()
+                            .getName() + ":debug 日志.....");
             // SpringBoot底层默认的日志级别 info
-            log.info("info 日志..... 参数a:{} b:{}", a, b);
-            log.warn("warn 日志...");
-            log.error("error 日志...");
-            log.info("这个是一次请求");
+            log.info(Thread.currentThread()
+                           .getName() + ":info 日志..... 参数a:{} b:{}", a, b);
+            log.warn(Thread.currentThread()
+                           .getName() + ":warn 日志...");
+            log.error(Thread.currentThread()
+                            .getName() + ":error 日志...");
+            log.info(Thread.currentThread()
+                           .getName() + ":这个是一次请求");
         }
         return "hello";
     }

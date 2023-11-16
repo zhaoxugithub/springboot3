@@ -1,8 +1,13 @@
 package com.serendipity.controller;
 
+import org.reactivestreams.Publisher;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.util.retry.Retry;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,15 +30,30 @@ public class FluxTest {
         其中包含的元素按照指定的间隔来发布。除了间隔时间之外，还可以指定起始元素发布之前的延迟时间。
          */
         Flux.just("Hello", "World")
-                .subscribe(System.out::println);
+            .subscribe(System.out::println);
         Flux.fromArray(new Integer[]{1, 2, 3})
-                .subscribe(System.out::println);
+            .subscribe(System.out::println);
         Flux.empty()
-                .subscribe(System.out::println);
+            .subscribe(System.out::println);
         Flux.range(1, 10)
-                .subscribe(System.out::println);
+            .subscribe(System.out::println);
         Flux.interval(Duration.of(10, ChronoUnit.SECONDS))
-                .subscribe(System.out::println);
+            .subscribe(System.out::println);
+    }
+
+    public void test1() {
+        WebClient webClient = WebClient.builder()
+                                       .baseUrl("http://jsonplaceholder.typicode.com")
+                                       .build();
+
+        Mono<String> mono = webClient.get()  // GET 请求
+                                     .uri("/postss/1")  // 请求路径,注意为了制造异常，这里是错的
+                                     .retrieve()  // 获取请求结果
+                                     .bodyToMono(String.class)  // 用Mono接收单个非集合对象数据
+                                     .doOnError(Exception.class, err -> {  // 处理异常
+                                         System.out.println(LocalDateTime.now() + "---发生错误：" + err.getMessage());
+                                     })
+                                     .retry(3);
     }
 
     public int[] twoSum(int[] nums, int target) {

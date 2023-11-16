@@ -3,27 +3,30 @@ package com.atguigu.boot;
 import com.atguigu.boot.bean.Person;
 import com.atguigu.boot.bean.Student;
 import com.atguigu.boot.bean.Teacher;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.Arrays;
 
 /**
  * @author lfy
  * @Description 启动SpringBoot项目的主入口程序
  * @create 2023-03-27 18:25
  */
-
 // 主程序：com.atguigu.boot
 //@SpringBootApplication(scanBasePackages = "com.atguigu")
 //@SpringBootConfiguration
 //@EnableAutoConfiguration
 //@ComponentScan("com.atguigu") 可以使用这个注解指定包扫描路
+@Slf4j
 @SpringBootApplication // 这是一个SpringBoot应用
 public class MainApplication {
     public static void main(String[] args) {
         // java10： 局部变量类型的自动推断
         var ioc = SpringApplication.run(MainApplication.class, args);
         // 1、获取容器中所有组件的名字
-        String[] names = ioc.getBeanDefinitionNames();
+        String[] beanNames = ioc.getBeanDefinitionNames();
         // 2、挨个遍历：
         // dispatcherServlet、beanNameViewResolver、characterEncodingFilter、multipartResolver
         // SpringBoot把以前配置的核心组件现在都给我们自动配置好了。
@@ -33,34 +36,29 @@ public class MainApplication {
             characterEncodingFilter
             multipartResolver
          */
-        for (String name : names) {
-            System.out.println(name);
-        }
+        log.info(Arrays.toString(beanNames));
         Person person = ioc.getBean(Person.class);
-        System.out.println("person：" + person);
-        System.out.println("==== 用|表示大文本，会保留格式");
-        String s = person.getChild()
-                .getText()
-                .get(2);
-        System.out.println(s);
-        System.out.println("==== 用>表示大文本，会压缩换行变成 空格");
-        var ss = person.getChild()
-                .getText()
-                .get(3);
-        System.out.println(ss);
-        System.out.println("==== 用|表示大文本，会压缩换行变成 空格");
-        var ss2 = person.getChild()
-                .getText()
-                .get(4);
-        System.out.println(ss2);
-        for (String s1 : ioc.getBeanNamesForType(Teacher.class)) {
-            System.out.println(s1);
-        }
-        var teacher = ioc.getBean(Teacher.class);
-        System.out.println(teacher);
+        log.info("person={}", person);
 
-        System.out.println("-------------");
-        Student student = ioc.getBean(Student.class);
-        System.out.println(student);
+        log.warn("===== 用|表示大文本,会保留格式");
+        String text2 = person.getChild()
+                             .getText()
+                             .get(2);
+        log.info("get Child 2 is {}", text2);
+
+        log.info("==== 用>表示大文本，会压缩换行变成 空格");
+        String text3 = person.getChild()
+                             .getText()
+                             .get(3);
+        log.info("get Child 3 is {}", text3);
+        log.info("==== 用|表示大文本，会压缩换行变成 空格");
+        var text4 = person.getChild()
+                          .getText()
+                          .get(4);
+        log.info("get Child 4 is {}", text4);
+        log.info("get bean Name for type ={}", Arrays.toString(ioc.getBeanNamesForType(Teacher.class)));
+        log.info("get bean teacher is {}", ioc.getBean(Teacher.class));
+        log.info("--------------------------------");
+        log.info("get bean Student is {}", ioc.getBean(Student.class));
     }
 }

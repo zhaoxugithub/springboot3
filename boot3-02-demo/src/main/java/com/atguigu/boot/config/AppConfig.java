@@ -1,14 +1,14 @@
 package com.atguigu.boot.config;
 // import com.alibaba.druid.FastsqlException;
 
-import com.alibaba.druid.FastsqlException;
 import com.atguigu.boot.bean.Pig;
 import com.atguigu.boot.bean.Sheep;
 import com.atguigu.boot.bean.User;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 /**
  * @author lfy
  * @Description
@@ -33,8 +33,6 @@ public class AppConfig {
 
     /**
      * 1、组件默认是单实例的
-     *
-     * @return
      */
     @Scope("prototype")
     @Bean("userHaha") // 替代以前的Bean标签。 组件在容器中的名字默认是方法名，可以直接修改注解的值
