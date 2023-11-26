@@ -20,7 +20,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @SpringBootConfiguration
 @EnableConfigurationProperties(Teacher.class)
 public class AppConfig {
-    // public Teacher getTeacher() {
-    //     return new Teacher();
-    // }
+    /*
+    public Teacher getTeacher() {
+        return new Teacher();
+    }
+    注意： 只有在这个方法上加上@bean注解才能把创建出来的对象放到容器里面
+    */
 }

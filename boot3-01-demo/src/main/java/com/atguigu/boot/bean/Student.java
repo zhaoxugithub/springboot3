@@ -14,6 +14,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 
 @Data
+// 加入ConfigurationProperties注解可以把student这个对象注入到容器里面
 @ConfigurationProperties(prefix = "student")
 public class Student {
     private String name;
@@ -22,10 +23,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", age='" + age + '\'' +
-                ", wight=" + wight +
-                '}';
+        return "Student{" + "name='" + name + '\'' + ", age='" + age + '\'' + ", wight=" + wight + '}';
     }
 }

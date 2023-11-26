@@ -3,7 +3,7 @@
 # 3、左侧对齐的代表同一层级的属性
 ---
 server:
-  port: 9999
+  port: 9998
 
 spring:
   servlet:

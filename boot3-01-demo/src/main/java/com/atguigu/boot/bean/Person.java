@@ -14,8 +14,10 @@ import java.util.Map;
  * @create 2023-03-30 9:12
  */
 @Component
-@ConfigurationProperties(prefix = "person") // 和配置文件person前缀的所有配置进行绑定
-@Data // 自动生成JavaBean属性的getter/setter
+@ConfigurationProperties(prefix = "person")
+@Data
+// 和配置文件person前缀的所有配置进行绑定
+// 自动生成JavaBean属性的getter/setter
 //@NoArgsConstructor //自动生成无参构造器
 // 自动生成全参构造器
 // @AllArgsConstructor

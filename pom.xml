@@ -25,6 +25,7 @@
         <module>boot3-15-aot-common</module>
         <module>boot3-16-aot-springboot</module>
         <module>boot3-17-webflux</module>
+        <module>boot3-18-mybatis-plus</module>
     </modules>
 
 

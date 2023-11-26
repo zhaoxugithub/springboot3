@@ -1,8 +1,6 @@
 package com.atguigu.boot.bean;
 
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 /**
  * @author lfy
@@ -16,6 +14,7 @@ public class Pig {
     private Long id;
     private String name;
     private Integer age;
+
     @Override
     public String toString() {
         return "Pig{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + '}';

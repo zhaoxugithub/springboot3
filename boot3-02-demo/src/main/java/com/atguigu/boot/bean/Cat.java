@@ -1,8 +1,6 @@
 package com.atguigu.boot.bean;
 
 import lombok.Data;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  * @author lfy
@@ -14,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class Cat {
     private Long id;
     private String name;
+
     @Override
     public String toString() {
         return "Cat{" + "id=" + id + ", name='" + name + '\'' + '}';
