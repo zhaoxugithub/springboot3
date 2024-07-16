@@ -14,7 +14,7 @@
     <name>boot3-05-ssm</name>
     <description>boot3-05-ssm</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
     </properties>
     <dependencies>
 <!--        web场景-->
