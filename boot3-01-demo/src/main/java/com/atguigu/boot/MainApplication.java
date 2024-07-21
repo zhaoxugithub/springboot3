@@ -5,7 +5,6 @@ import com.atguigu.boot.bean.Student;
 import com.atguigu.boot.bean.Teacher;
 import com.atguigu.boot.bean2.AClass1;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -53,13 +52,11 @@ public class MainApplication {
         String text3 = person.getChild()
                 .getText()
                 .get(3);
-        String text3 = person.getChild().getText().get(3);
         log.info("get Child 3 is {}", text3);
         log.info("==== 用|表示大文本，会压缩换行变成 空格");
         var text4 = person.getChild()
                 .getText()
                 .get(4);
-        var text4 = person.getChild().getText().get(4);
         log.info("get Child 4 is {}", text4);
         log.info("get bean Name for type ={}", Arrays.toString(ioc.getBeanNamesForType(Teacher.class)));
         log.info("get bean teacher is {}", ioc.getBean(Teacher.class));
