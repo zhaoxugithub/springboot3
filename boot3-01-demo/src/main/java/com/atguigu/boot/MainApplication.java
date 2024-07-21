@@ -36,25 +36,25 @@ public class MainApplication {
             characterEncodingFilter
             multipartResolver
          */
-        log.info(Arrays.toString(beanNames));
+        Arrays.stream(beanNames).forEach(System.out::println);
         Person person = ioc.getBean(Person.class);
         log.info("person={}", person);
 
         log.warn("===== 用|表示大文本,会保留格式");
         String text2 = person.getChild()
-                             .getText()
-                             .get(2);
+                .getText()
+                .get(2);
         log.info("get Child 2 is {}", text2);
 
         log.info("==== 用>表示大文本，会压缩换行变成 空格");
         String text3 = person.getChild()
-                             .getText()
-                             .get(3);
+                .getText()
+                .get(3);
         log.info("get Child 3 is {}", text3);
         log.info("==== 用|表示大文本，会压缩换行变成 空格");
         var text4 = person.getChild()
-                          .getText()
-                          .get(4);
+                .getText()
+                .get(4);
         log.info("get Child 4 is {}", text4);
         log.info("get bean Name for type ={}", Arrays.toString(ioc.getBeanNamesForType(Teacher.class)));
         log.info("get bean teacher is {}", ioc.getBean(Teacher.class));

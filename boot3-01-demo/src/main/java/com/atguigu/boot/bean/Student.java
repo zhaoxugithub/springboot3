@@ -2,6 +2,7 @@ package com.atguigu.boot.bean;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * ClassName Student
@@ -12,7 +13,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *
  * @author 11931
  */
-
 @Data
 // 加入ConfigurationProperties注解可以把student这个对象注入到容器里面
 @ConfigurationProperties(prefix = "student")

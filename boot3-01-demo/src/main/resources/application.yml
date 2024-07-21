@@ -11,7 +11,7 @@ spring:
       max-file-size: 10MB
   data:
     redis:
-      host: 1.15.149.196
+      host: 150.158.141.184
       port: 6379
       password: 123456
 
@@ -65,3 +65,13 @@ student:
   wight: 190
 
 
+### actuator 监控springboot项目
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
