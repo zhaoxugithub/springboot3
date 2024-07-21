@@ -64,6 +64,9 @@ student:
   name: "zxx"
   wight: 190
 
+aClass1:
+  name: aclass
+  describe: "this is aClass"
 
 ### actuator 监控springboot项目
 management:
