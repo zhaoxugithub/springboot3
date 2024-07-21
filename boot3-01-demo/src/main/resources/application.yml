@@ -64,4 +64,7 @@ student:
   name: "zxx"
   wight: 190
 
+aClass1:
+  name: aclass
+  describe: "this is aClass"
 
