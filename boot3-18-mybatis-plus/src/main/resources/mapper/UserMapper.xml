@@ -8,4 +8,23 @@
         select *
         from users;
     </select>
+
+    <insert id="insertBatch" parameterType="list">
+        insert into users (name, age, height, gender, address, created_time, updated_time)
+        values
+        <foreach collection="list" item="user" separator=",">
+            (#{user.name}, #{user.age}, #{user.height}, #{user.gender}, #{user.address}, now(), now())
+        </foreach>
+    </insert>
+
+    <insert id="insert" parameterType="com.serendipity.entity.User">
+        insert into users (name, age, height, gender, address, created_time, updated_time)
+        values (#{name}, #{age}, #{height}, #{gender}, #{address}, now(), now())
+    </insert>
+
+    <delete id="deleteById" parameterType="int">
+        delete from users
+        where id = #{id}
+    </delete>
+
 </mapper>
