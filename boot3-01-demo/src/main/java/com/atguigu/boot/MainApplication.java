@@ -76,6 +76,11 @@ public class MainApplication {
     public static void main(String[] args) {
         // java10： 局部变量类型的自动推断
         var ioc = SpringApplication.run(MainApplication.class, args);
+        // 组件都是懒加载的，只有在第一次使用时才会创建 bean 实例
+        System.out.println("容器中的组件个数：" + ioc.getBeanDefinitionCount());
+        for (String beanDefinitionName : ioc.getBeanDefinitionNames()) {
+            System.out.println(beanDefinitionName);
+        }
 //        test01(ioc);
         test02(ioc);
     }

@@ -28,9 +28,9 @@ public class UserController {
     @GetMapping("/list")
     public List<User> getUsers() {
         long start = System.currentTimeMillis();
-        System.out.println("start export data:" + start);
+        System.out.println("start query data:" + start);
         List<User> users = userService.getUsers();
-        System.out.println("end export data:" + (System.currentTimeMillis() - start));
+        System.out.println("end query data:" + (System.currentTimeMillis() - start));
         return users;
     }
 
@@ -38,8 +38,8 @@ public class UserController {
     public void upload(MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();
         EasyExcel.read(inputStream, User.class, new MyDataModelListener(userService))
-                 .sheet()
-                 .doRead();
+                .sheet()
+                .doRead();
     }
 
 
@@ -48,7 +48,7 @@ public class UserController {
         response.setContentType("application/vnd.ms-excel");
         response.setCharacterEncoding("utf-8");
         String fileName = URLEncoder.encode("用户信息", "UTF-8")
-                                    .replaceAll("\\+", "%20");
+                .replaceAll("\\+", "%20");
         response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
 
         long start = System.currentTimeMillis();
@@ -57,15 +57,15 @@ public class UserController {
         System.out.println("end export data:" + (System.currentTimeMillis() - start));
 
         EasyExcel.write(response.getOutputStream(), User.class)
-                 .sheet("用户信息")
-                 .doWrite(users);
+                .sheet("用户信息")
+                .doWrite(users);
     }
 
 
     @GetMapping("/downLoadSync")
     public String downLoadSync() throws InterruptedException {
         System.out.println("t1:" + Thread.currentThread()
-                                         .getName());
+                .getName());
         return userService.exportData();
     }
 }
