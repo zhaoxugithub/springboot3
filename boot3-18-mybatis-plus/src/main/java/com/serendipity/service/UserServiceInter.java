@@ -13,8 +13,12 @@ public interface UserServiceInter {
 
     List<User> getUsers();
 
+    List<User> getUser1();
+
     void addUsers(List<User> users);
 
     // 异步导出
     String exportData() throws InterruptedException;
+
+    List<User> getUsersPartition();
 }

@@ -2,6 +2,7 @@ package com.serendipity.service;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.builder.ExcelWriterBuilder;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.serendipity.entity.User;
 import com.serendipity.mapper.UserMapper;
 import org.apache.commons.compress.utils.Lists;
@@ -31,6 +32,12 @@ public class UserService implements UserServiceInter {
     }
 
     @Override
+    public List<User> getUser1() {
+        return null;
+    }
+
+
+    @Override
     public void addUsers(List<User> users) {
         userMapper.insertBatch(users);
     }
@@ -44,6 +51,11 @@ public class UserService implements UserServiceInter {
         String fileName = "user_data" + start + ".xlsx";
         asyncService.uploadOSS2(fileName, dataInputStream);
         return fileName;
+    }
+
+    @Override
+    public List<User> getUsersPartition() {
+        return List.of();
     }
 
     private InputStream getDataInputStream() {
