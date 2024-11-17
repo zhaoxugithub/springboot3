@@ -27,8 +27,8 @@ public class AsyncService {
 
     @Async
     public void uploadOSS2(String fileName, InputStream inputStream) {
-        System.out.println("t2:"+Thread.currentThread()
-                                 .getName());
+        System.out.println("t2:" + Thread.currentThread()
+                                         .getName());
         ossService.upload(fileName, inputStream);
     }
 

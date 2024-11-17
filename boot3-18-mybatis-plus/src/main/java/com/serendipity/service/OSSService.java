@@ -6,7 +6,6 @@ import com.aliyun.oss.model.PutObjectRequest;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
