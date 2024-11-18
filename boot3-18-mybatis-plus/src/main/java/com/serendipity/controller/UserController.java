@@ -34,7 +34,7 @@ public class UserController {
         return users;
     }
 
-    @GetMapping("list1")
+    @GetMapping("/list1")
     public List<User> getUsers1(){
         long start = System.currentTimeMillis();
         System.out.println("start query data:" + start);

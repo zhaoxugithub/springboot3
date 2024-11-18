@@ -13,6 +13,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -39,16 +40,27 @@ public class UserService implements UserServiceInter {
         // 多线程查询
         List<Future<?>> futures = Lists.newArrayList();
         int BatchSize = 10000;
+
+
         ExecutorService executorService1 = Executors.newFixedThreadPool(10);
-        for (int i = 0; i < 10; i++) {
+        List<User> result = Lists.newArrayList();
+        for (int i = 0; i < 100; i++) {
             int finalI = i;
             Future<?> submit = executorService1.submit(() -> {
-                List<User> usersByLimit = userMapper.getUsersByLimit(10000, finalI * BatchSize);
+                result.addAll(userMapper.getUsersByLimit(BatchSize, finalI * BatchSize));
             });
-
             futures.add(submit);
         }
-        return null;
+        futures.forEach(f -> {
+            try {
+                System.out.println(f.get());
+            } catch (InterruptedException | ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        System.out.println("size:" + result.size());
+        return result;
     }
 
 
@@ -78,7 +90,7 @@ public class UserService implements UserServiceInter {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ExcelWriterBuilder writerBuilder = EasyExcel.write(outputStream, User.class);
         writerBuilder.sheet("User")
-                .doWrite(users);
+                     .doWrite(users);
 
         return new ByteArrayInputStream(outputStream.toByteArray());
     }
