@@ -34,6 +34,16 @@ public class UserController {
         return users;
     }
 
+    @GetMapping("list1")
+    public List<User> getUsers1(){
+        long start = System.currentTimeMillis();
+        System.out.println("start query data:" + start);
+        List<User> users = userService.getUser1();
+        System.out.println("end query data:" + (System.currentTimeMillis() - start));
+        return users;
+    }
+
+
     @PostMapping("/put")
     public void upload(MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();
