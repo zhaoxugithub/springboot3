@@ -2,12 +2,12 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    #url: jdbc:mysql://192.168.150.151:3306/test?serverTimezone=Asia/Shanghai
-    #username: root
-    #password: 123456
-    url: jdbc:mysql://150.158.141.184:3308/demo?serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.150.151:3306/test?serverTimezone=Asia/Shanghai
     username: root
-    password: root
+    password: 123456
+#    url: jdbc:mysql://150.158.141.184:3308/demo?serverTimezone=Asia/Shanghai
+#    username: root
+#    password: root
   servlet:
     multipart:
       max-file-size: 300MB

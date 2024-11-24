@@ -14,14 +14,13 @@ import java.util.Date;
 @Service
 public class OSSService {
     // 阿里云OSS的Endpoint
-    private final String ENDPOINT = "";
+    private final String ENDPOINT = "oss-cn-hangzhou.aliyuncs.com";
     // 阿里云OSS的AccessKeyId
-    private final String ACCESSKEYID = "";
+    private final String ACCESSKEYID = "LTAI5tLuKJCHxpaL6n1g27Ez";
     // 阿里云OSS的AccessKeySecret
-    private final String ACCESSKEYSECRET = "";
+    private final String ACCESSKEYSECRET = "g7nBN2WlCzyHmi1ie0CDl1QrzfmBMk";
     // 阿里云OSS的BucketName
-    private final String BUCKETNAME = "";
-
+    private final String BUCKETNAME = "zhaoxu-bucket01";
 
     public String upload(String fileName, InputStream fileContent) {
         OSS oss = new OSSClientBuilder().build(ENDPOINT, ACCESSKEYID, ACCESSKEYSECRET);

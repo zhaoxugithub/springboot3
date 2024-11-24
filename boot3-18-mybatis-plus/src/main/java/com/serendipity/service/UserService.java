@@ -2,7 +2,6 @@ package com.serendipity.service;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.builder.ExcelWriterBuilder;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.serendipity.entity.User;
 import com.serendipity.mapper.UserMapper;
 import org.apache.commons.compress.utils.Lists;
@@ -13,18 +12,13 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 
 @Service
 public class UserService implements UserServiceInter {
-
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private AsyncService asyncService;
 
@@ -37,29 +31,35 @@ public class UserService implements UserServiceInter {
 
     @Override
     public List<User> getUser1() {
-        // 多线程查询
-        List<Future<?>> futures = Lists.newArrayList();
-        int BatchSize = 10000;
 
+        int batchSize = 20000;
+        int total = userMapper.selectCount();
 
-        ExecutorService executorService1 = Executors.newFixedThreadPool(10);
-        List<User> result = Lists.newArrayList();
-        for (int i = 0; i < 100; i++) {
+        int batch = total / batchSize;
+        ExecutorService executorService = Executors.newCachedThreadPool();
+
+        CopyOnWriteArrayList<User> result = new CopyOnWriteArrayList<>();
+
+        List<Future<?>> list = Lists.newArrayList();
+        for (int i = 0; i < batch; i++) {
             int finalI = i;
-            Future<?> submit = executorService1.submit(() -> {
-                result.addAll(userMapper.getUsersByLimit(BatchSize, finalI * BatchSize));
+            Future<?> submit = executorService.submit(() -> {
+                result.addAll(userMapper.getUsersByLimit(batchSize, finalI * batchSize));
             });
-            futures.add(submit);
+            list.add(submit);
         }
-        futures.forEach(f -> {
+
+        list.forEach(future -> {
             try {
-                System.out.println(f.get());
+                future.get();
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }
         });
 
-        System.out.println("size:" + result.size());
+        executorService.shutdown();
+
+        System.out.println("result size: " + result.size());
         return result;
     }
 
@@ -71,11 +71,8 @@ public class UserService implements UserServiceInter {
 
     @Override
     public String exportData() {
-        long start = System.currentTimeMillis();
-        System.out.println("start export data:" + start);
         InputStream dataInputStream = getDataInputStream();
-        System.out.println("end export data:" + (System.currentTimeMillis() - start));
-        String fileName = "user_data" + start + ".xlsx";
+        String fileName = "user_data" + System.currentTimeMillis() + ".xlsx";
         asyncService.uploadOSS2(fileName, dataInputStream);
         return fileName;
     }

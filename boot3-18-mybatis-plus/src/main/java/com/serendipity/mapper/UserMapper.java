@@ -13,4 +13,6 @@ public interface UserMapper extends BaseMapper<User> {
     List<User> getUsersByLimit(Integer limit, Integer offset);
 
     void insertBatch(List<User> users);
+
+    int selectCount();
 }

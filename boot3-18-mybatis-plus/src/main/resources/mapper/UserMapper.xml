@@ -34,4 +34,9 @@
         where id = #{id}
     </delete>
 
+    <select id="selectCount" resultType="int">
+        SELECT COUNT(*)
+        FROM users;
+    </select>
+
 </mapper>
