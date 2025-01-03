@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Bean;
 @ConditionalOnMissingClass(value = "com.alibaba.druid.FastsqlException") // 放在类级别，如果注解判断生效，则整个配置类才生效
 @SpringBootConfiguration
 public class AppConfig2 {
+
     @ConditionalOnClass(name = "com.alibaba.druidFa.stsqlException") // 放在方法级别，单独对这个方法进行注解判断。
     @Bean
     public Cat cat01() {

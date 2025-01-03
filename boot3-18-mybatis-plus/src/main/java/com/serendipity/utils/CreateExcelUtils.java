@@ -22,8 +22,8 @@ public class CreateExcelUtils {
     }
 
     public static void createMoreThread() throws FileNotFoundException, ExecutionException, InterruptedException {
-        // String fileName = "D:\\user.xlsx";
-        String fileName = "/Users/zhaoxu/Documents/IdeaProjects/springboot3/boot3-18-mybatis-plus/src/main/java/com/serendipity/user.xlsx";
+        String fileName = "E:\\desktop\\user.xlsx";
+        // String fileName = "/Users/zhaoxu/Documents/IdeaProjects/springboot3/boot3-18-mybatis-plus/src/main/java/com/serendipity/user.xlsx";
         OutputStream outputStream = new FileOutputStream(fileName);
 
         // Create a thread pool
