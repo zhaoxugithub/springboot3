@@ -7,22 +7,28 @@
     <artifactId>boot3-01-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
     <!--    所有springboot项目都必须继承自 spring-boot-starter-parent -->
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>3.4.0</version>
+        <!-- 代表从仓库中取       -->
+        <relativePath/>
     </parent>
+
     <properties>
         <mysql.version>8.0.31</mysql.version>
         <druid.version>1.2.16</druid.version>
     </properties>
+
     <dependencies>
         <!-- web开发的场景启动器 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -51,6 +57,7 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
