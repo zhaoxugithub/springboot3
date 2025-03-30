@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.transaction.mapper.UserProfileMapper">
+    <!-- 用户详情结果映射 -->
+    <resultMap id="profileResultMap" type="com.atguigu.transaction.entity.UserProfile">
+        <id property="profileId" column="profile_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="fullName" column="full_name"/>
+        <result property="gender" column="gender"/>
+        <result property="birthdate" column="birthdate"/>
+        <result property="phone" column="phone"/>
+        <!-- 其他字段映射 -->
+    </resultMap>
+
+    <update id="updateUserProfile" parameterType="com.atguigu.transaction.entity.UserProfile">
+        UPDATE user_profile
+        SET  phone  = #{phone}
+        WHERE user_id = #{userId}
+    </update>
+</mapper>

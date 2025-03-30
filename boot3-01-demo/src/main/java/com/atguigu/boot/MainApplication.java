@@ -38,7 +38,7 @@ public class MainApplication {
             characterEncodingFilter
             multipartResolver
          */
-        Arrays.stream(beanNames).forEach(System.out::println);
+        // Arrays.stream(beanNames).forEach(System.out::println);
         Person person = ioc.getBean(Person.class);
         log.info("person={}", person);
 
@@ -81,7 +81,7 @@ public class MainApplication {
         for (String beanDefinitionName : ioc.getBeanDefinitionNames()) {
             System.out.println(beanDefinitionName);
         }
-        // test01(ioc);
-        test02(ioc);
+        test01(ioc);
+        // test02(ioc);
     }
 }

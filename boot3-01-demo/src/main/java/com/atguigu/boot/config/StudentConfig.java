@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Configuration;
  * @author 11931
  */
 @Configuration
+// EnableConfigurationProperties注解可以把student这个对象注入到容器里面
+// 一般用作导入第三方包
 @EnableConfigurationProperties(Student.class)
 public class StudentConfig {
 }
