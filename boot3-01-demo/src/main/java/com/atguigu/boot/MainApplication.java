@@ -71,6 +71,10 @@ public class MainApplication {
 
         Student bean = ioc.getBean(Student.class);
         System.out.println(bean);
+
+        Teacher teacher = ioc.getBean(Teacher.class);
+        System.out.println(teacher);
+
     }
 
     public static void main(String[] args) {
@@ -81,7 +85,7 @@ public class MainApplication {
         for (String beanDefinitionName : ioc.getBeanDefinitionNames()) {
             System.out.println(beanDefinitionName);
         }
-        test01(ioc);
-        // test02(ioc);
+        // test01(ioc);
+        test02(ioc);
     }
 }

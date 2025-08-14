@@ -6,18 +6,18 @@
     <groupId>com.atguigu</groupId>
     <artifactId>boot3-01-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <!--    所有springboot项目都必须继承自 spring-boot-starter-parent -->
+    <!-- 所有springboot项目都必须继承自 spring-boot-starter-parent -->
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.0</version>
-        <!-- 代表从仓库中取       -->
+        <!-- 代表从maven中央仓库中取 -->
         <relativePath/>
     </parent>
 
     <properties>
-        <mysql.version>8.0.31</mysql.version>
+        <mysql.version>8.2.0</mysql.version>
         <druid.version>1.2.16</druid.version>
     </properties>
 
@@ -33,6 +33,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
         <dependency>
             <groupId>org.projectlombok</groupId>
