@@ -87,7 +87,7 @@ public class UserService implements UserServiceInter {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ExcelWriterBuilder writerBuilder = EasyExcel.write(outputStream, User.class);
         writerBuilder.sheet("User")
-                     .doWrite(users);
+                .doWrite(users);
 
         return new ByteArrayInputStream(outputStream.toByteArray());
     }
