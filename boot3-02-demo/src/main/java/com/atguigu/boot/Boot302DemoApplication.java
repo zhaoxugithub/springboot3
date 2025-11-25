@@ -9,16 +9,16 @@ public class Boot302DemoApplication {
 
     public static void main(String[] args) {
         var ioc = SpringApplication.run(Boot302DemoApplication.class, args);
-//        for (String name : ioc.getBeanDefinitionNames()) {
-//            System.out.println(name);
-//        }
-//        String[] forType = ioc.getBeanNamesForType(FastsqlException.class);
-//        for (String s : forType) {
-//            System.out.println(s);
-//        }
-//        Object userHaha1 = ioc.getBean("userHaha");
-//        Object userHaha2 = ioc.getBean("userHaha");
-//        System.out.println(userHaha2 == userHaha1);
+        //        for (String name : ioc.getBeanDefinitionNames()) {
+        //            System.out.println(name);
+        //        }
+        //        String[] forType = ioc.getBeanNamesForType(FastsqlException.class);
+        //        for (String s : forType) {
+        //            System.out.println(s);
+        //        }
+        //        Object userHaha1 = ioc.getBean("userHaha");
+        //        Object userHaha2 = ioc.getBean("userHaha");
+        //        System.out.println(userHaha2 == userHaha1);
         for (String s : ioc.getBeanNamesForType(Cat.class)) {
             System.out.println("cat: " + s);
         }

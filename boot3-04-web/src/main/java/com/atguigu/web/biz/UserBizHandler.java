@@ -78,7 +78,8 @@ public class UserBizHandler {
     public ServerResponse updateUser(ServerRequest request) throws ServletException, IOException {
         Person body = request.body(Person.class);
         log.info("保存用户信息更新: {}", body);
-        return ServerResponse.ok()
+        return ServerResponse
+                .ok()
                 .build();
     }
 
@@ -91,7 +92,8 @@ public class UserBizHandler {
     public ServerResponse deleteUser(ServerRequest request) {
         String id = request.pathVariable("id");
         log.info("删除【{}】用户信息", id);
-        return ServerResponse.ok()
+        return ServerResponse
+                .ok()
                 .build();
     }
 }

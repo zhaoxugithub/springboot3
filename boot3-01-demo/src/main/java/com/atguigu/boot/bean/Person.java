@@ -1,6 +1,7 @@
 package com.atguigu.boot.bean;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.util.Map;
 @Component
 @ConfigurationProperties(prefix = "person")
 @Data
+@ToString
 // 和配置文件person前缀的所有配置进行绑定
 // 自动生成JavaBean属性的getter/setter
 //@NoArgsConstructor //自动生成无参构造器

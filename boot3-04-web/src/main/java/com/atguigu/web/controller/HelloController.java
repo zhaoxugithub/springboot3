@@ -74,6 +74,11 @@ public class HelloController {
         return login;
     }
 
+    @GetMapping("/custom-view")
+    public String customView() {
+        return "Aaaa"; // 返回视图名称，Spring 会查找名为 "Aaaa" 的 View Bean
+    }
+
     public static void aaa(String[] args) throws JsonProcessingException {
         Person person = new Person();
         person.setId(1L);

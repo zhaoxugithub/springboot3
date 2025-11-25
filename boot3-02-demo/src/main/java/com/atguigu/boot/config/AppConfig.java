@@ -42,8 +42,9 @@ public class AppConfig {
         user.setName("张三");
         return user;
     }
-//    @Bean
-//    public FastsqlException fastsqlException(){
-//        return new FastsqlException();
-//    }
+
+    //    @Bean
+    //    public FastsqlException fastsqlException(){
+    //        return new FastsqlException();
+    //    }
 }

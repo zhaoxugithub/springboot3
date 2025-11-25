@@ -1,6 +1,7 @@
 package com.atguigu.boot.bean;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -16,13 +17,9 @@ import org.springframework.stereotype.Component;
 @Data
 // 加入ConfigurationProperties注解可以把student这个对象注入到容器里面
 @ConfigurationProperties(prefix = "student")
+@ToString
 public class Student {
     private String name;
     private String age;
     private Integer wight;
-
-    @Override
-    public String toString() {
-        return "Student{" + "name='" + name + '\'' + ", age='" + age + '\'' + ", wight=" + wight + '}';
-    }
 }

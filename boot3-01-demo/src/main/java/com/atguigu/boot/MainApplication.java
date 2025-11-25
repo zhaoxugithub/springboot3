@@ -85,7 +85,8 @@ public class MainApplication {
         for (String beanDefinitionName : ioc.getBeanDefinitionNames()) {
             System.out.println(beanDefinitionName);
         }
-        // test01(ioc);
+        test01(ioc);
+        System.out.println("----------------");
         test02(ioc);
     }
 }
