@@ -2,6 +2,8 @@ package com.atguigu.web.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -21,5 +23,26 @@ public class AService {
         HttpServletResponse response = attributes.getResponse();
         HttpServletRequest request = attributes.getRequest();
         String requestURI = request.getRequestURI();
+    }
+
+
+    public String b() {
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return "hello b";
+    }
+
+
+    // @Async
+    @EventListener
+    public void onEvent(Object obj) {
+        String b = b();
+        if (b == null) {
+            System.out.println("b==null");
+        }
+        System.out.println("监听到事件：" + b);
     }
 }

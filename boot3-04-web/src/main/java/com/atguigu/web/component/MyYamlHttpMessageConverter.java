@@ -13,6 +13,7 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author lfy
@@ -20,12 +21,14 @@ import java.nio.charset.Charset;
  * @create 2023-04-12 20:41
  */
 public class MyYamlHttpMessageConverter extends AbstractHttpMessageConverter<Object> {
-    private ObjectMapper objectMapper = null; // 把对象转成yaml
+
+    private final ObjectMapper objectMapper; // 把对象转成yaml
 
     public MyYamlHttpMessageConverter() {
         // 告诉SpringBoot这个MessageConverter支持哪种媒体类型  //媒体类型
-        super(new MediaType("text", "yaml", Charset.forName("UTF-8")));
-        YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
+        super(new MediaType("text", "yaml", StandardCharsets.UTF_8));
+        YAMLFactory factory = new YAMLFactory();
+        factory.disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         this.objectMapper = new ObjectMapper(factory);
     }
 

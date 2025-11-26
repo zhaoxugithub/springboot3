@@ -1,6 +1,7 @@
 package com.atguigu.web.controller;
 
 import com.atguigu.web.bean.Person;
+import com.atguigu.web.service.AService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
@@ -8,11 +9,14 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Locale;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author lfy
@@ -22,6 +26,12 @@ import java.util.UUID;
 @Slf4j
 @RestController
 public class HelloController {
+    @Autowired
+    private AService aService;
+
+    @Autowired
+    private ApplicationEventPublisher publisher;
+
     /**
      * 默认使用新版 PathPatternParser 进行路径匹配
      * 不能匹配 ** 在中间的情况，剩下的和 antPathMatcher语法兼容
@@ -33,8 +43,7 @@ public class HelloController {
     @GetMapping("/a*/b?/**/{p1:[a-f]+}/**")
     public String hello(HttpServletRequest request, @PathVariable("p1") String path) {
         log.info("路径变量p1： {}", path);
-        String uri = request.getRequestURI();
-        return uri;
+        return request.getRequestURI();
     }
 
     @GetMapping("/test1")
@@ -90,4 +99,40 @@ public class HelloController {
         String s = mapper.writeValueAsString(person);
         System.out.println(s);
     }
+
+
+    /**
+     * 异步調用
+     */
+    @GetMapping("/syncInvoke")
+    public String syncInvoke() {
+        // 发布异步通知
+        publisher.publishEvent("b");
+        // 长时间调用
+        return "ok";
+    }
+
+    //
+    // public String syncInvoke2() {
+    //     // 创建异步任务
+    //     CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+    //         // 长时间调用
+    //         return aService.b();
+    //     });
+    //     // 获取结果
+    //     String result = future.join();
+    //     return result;
+    // }
+    //
+    // @GetMapping("/syncInvokeWithResult")
+    // public CompletableFuture<String> syncInvokeWithResult() {
+    //     // 异步调用长时间任务
+    //     return CompletableFuture.supplyAsync(() -> {
+    //         // 长时间调用
+    //         return aService.b();
+    //     }).thenApply(result -> {
+    //         // 对结果进行处理（可选）
+    //         return "调用结果: " + result;
+    //     });
+    // }
 }

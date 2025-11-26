@@ -21,7 +21,6 @@ public class ReactorDemo03 {
             // 执行到2就不执行了,遇到第一个偶数就不执行了
             .any(item -> item % 2 == 0)
             .subscribe(System.out::println);
-
         Flux.just(1, 2, 3, 4, 5, 6)
             .doOnNext(System.out::println)
             .any(item -> item % 2 == 0)

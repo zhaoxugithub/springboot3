@@ -24,9 +24,7 @@ public class Boot307CoreApplication {
 
     @Bean
     public ApplicationRunner applicationRunner() {
-        return args -> {
-            System.out.println("===ApplicationRunner 运行了.....");
-        };
+        return args -> System.out.println("===ApplicationRunner 运行了.....");
     }
 
     @Bean

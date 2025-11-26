@@ -59,7 +59,6 @@ public class ReactorDemo01 {
                 System.out.println("调用了 isValidValue的方法");
                 return true;
             }
-
             String getData(String value) {
                 try {
                     Thread.sleep(5000);
@@ -68,11 +67,9 @@ public class ReactorDemo01 {
                 }
                 return "echo:" + value;
             }
-
             Mono<String> requestData(String value) {
                 return isValidValue(value) ? Mono.fromCallable(() -> getData(value)) : Mono.error(new RuntimeException("isValid value"));
             }
-
             Mono<String> requestMonoData(String value) {
                 return Mono.defer(() -> isValidValue(value) ? Mono.fromCallable(() -> getData(value)) : Mono.error(new RuntimeException()));
             }
@@ -136,14 +133,12 @@ public class ReactorDemo01 {
         // 实现自定义订阅者
         Subscriber<String> onComplete = new Subscriber<>() {
             volatile Subscription subscription;
-
             @Override
             public void onSubscribe(Subscription s) {
                 this.subscription = s;
                 System.out.println("initial request for 1 element");
                 this.subscription.request(1);
             }
-
             @Override
             public void onNext(String s) {
                 System.out.println("onNext:" + s);
@@ -152,12 +147,10 @@ public class ReactorDemo01 {
                 // 如果注释掉这个方法,表示订阅者消费完当前这个数据,后续就不继续执行了
                 // this.subscription.request(1);
             }
-
             @Override
             public void onError(Throwable t) {
                 System.err.println("出现异常" + t);
             }
-
             @Override
             public void onComplete() {
                 System.out.println("onComplete");

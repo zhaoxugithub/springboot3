@@ -25,9 +25,13 @@ public class MyConfig  /*implements WebMvcConfigurer*/ {
         return new WebMvcConfigurer() {
             @Override // 配置静态资源
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                registry.addResourceHandler("/static/**")
-                        .addResourceLocations("classpath:/a/", "classpath:/b/")
-                        .setCacheControl(CacheControl.maxAge(1180, TimeUnit.SECONDS));
+                registry.addResourceHandler(
+                        "/static/**"
+                        )
+                        .addResourceLocations(
+                                "classpath:/a/",
+                                "classpath:/b/"
+                        ).setCacheControl(CacheControl.maxAge(1180, TimeUnit.SECONDS));
             }
 
             @Override // 配置拦截器
