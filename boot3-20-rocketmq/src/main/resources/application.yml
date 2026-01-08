@@ -1,0 +1,7 @@
+rocketmq:
+  name-server: 150.158.27.19:9876
+  producer:
+    group: my-producer-group
+  consumer:
+    group: my-consumer-group
+    topic: my-topic

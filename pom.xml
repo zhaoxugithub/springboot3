@@ -27,6 +27,7 @@
         <module>boot3-17-webflux</module>
         <module>boot3-18-mybatis-plus</module>
         <module>boot3-19-samples</module>
+        <module>boot3-20-rocketmq</module>
     </modules>
 
 
