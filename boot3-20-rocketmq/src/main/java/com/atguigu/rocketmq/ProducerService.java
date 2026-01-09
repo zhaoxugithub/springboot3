@@ -12,7 +12,7 @@ public class ProducerService {
     @Autowired
     private RocketMQTemplate rocketMQTemplate;
 
-    @Value("${spring.rocketmq.consumer.topic:test1}")
+    @Value("${rocketmq.consumer.topic:test1}")
     private String topic;
 
     public void send(String tag, String payload) {
