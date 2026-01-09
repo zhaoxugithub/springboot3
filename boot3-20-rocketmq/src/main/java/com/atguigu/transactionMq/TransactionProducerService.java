@@ -56,6 +56,12 @@ public class TransactionProducerService {
      */
     public boolean sendOrderTransactionMessage(Order order) {
         try {
+            // 参数校验
+            if (order == null) {
+                log.error("发送事务消息失败: 订单对象为空");
+                return false;
+            }
+            
             // 将订单对象转换为JSON字符串
             String orderJson = objectMapper.writeValueAsString(order);
             
@@ -85,7 +91,8 @@ public class TransactionProducerService {
             return true;
             
         } catch (Exception e) {
-            log.error("发送事务消息失败, orderId: {}, error: {}", order.getOrderId(), e.getMessage(), e);
+            String orderId = (order != null && order.getOrderId() != null) ? order.getOrderId() : "UNKNOWN";
+            log.error("发送事务消息失败, orderId: {}, error: {}", orderId, e.getMessage(), e);
             return false;
         }
     }

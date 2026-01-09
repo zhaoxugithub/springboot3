@@ -97,7 +97,9 @@ public class OrderTransactionConsumer implements RocketMQListener<String> {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
+            // 恢复中断状态，以便上层调用者可以感知到中断
             Thread.currentThread().interrupt();
+            log.warn("库存扣减操作被中断");
         }
         log.info(">>> 库存扣减成功");
     }
