@@ -25,12 +25,15 @@ public class MyConfig  /*implements WebMvcConfigurer*/ {
         return new WebMvcConfigurer() {
             @Override // 配置静态资源
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                // 添加默认的静态资源处理器
                 registry.addResourceHandler(
                         "/static/**"
                         )
                         .addResourceLocations(
                                 "classpath:/a/",
-                                "classpath:/b/"
+                                "classpath:/b/",
+                                "classpath:/c/"
+                                // "classpath:/static/"
                         ).setCacheControl(CacheControl.maxAge(1180, TimeUnit.SECONDS));
             }
 

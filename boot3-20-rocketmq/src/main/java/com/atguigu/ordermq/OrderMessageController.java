@@ -24,7 +24,7 @@ public class OrderMessageController {
     /**
      * 测试顺序消息
      * 访问: http://localhost:8080/order/sendOrderedMessage
-     *
+     * <p>
      * 预期效果：
      * 1. 同一订单的消息会发送到同一个队列
      * 2. 消费者会按照发送顺序消费消息
@@ -40,7 +40,7 @@ public class OrderMessageController {
     /**
      * 测试非顺序消息
      * 访问: http://localhost:8080/order/sendNonOrderedMessage
-     *
+     * <p>
      * 预期效果：
      * 1. 消息会被随机分配到不同的队列
      * 2. 消费者会并发消费消息，不保证顺序
@@ -56,7 +56,7 @@ public class OrderMessageController {
     /**
      * 对比测试：同时发送顺序消息和非顺序消息
      * 访问: http://localhost:8080/order/compare
-     *
+     * <p>
      * 用于对比两种消息模式的区别
      */
     @GetMapping("/compare")
@@ -65,19 +65,14 @@ public class OrderMessageController {
 
         log.info("---------- 发送顺序消息 ----------");
         orderedMessageProducer.sendOrderedMessage();
-
         try {
             Thread.sleep(2000); // 等待2秒，让顺序消息处理完
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         log.info("---------- 发送非顺序消息 ----------");
         nonOrderedMessageProducer.sendNonOrderedMessage();
-
-        return "对比测试完成！请查看控制台日志对比两种消息模式的区别。\n" +
-               "顺序消息：同一订单的步骤会按顺序执行\n" +
-               "非顺序消息：同一订单的步骤可能乱序执行";
+        return "对比测试完成！请查看控制台日志对比两种消息模式的区别。\n" + "顺序消息：同一订单的步骤会按顺序执行\n" + "非顺序消息：同一订单的步骤可能乱序执行";
     }
 }
 

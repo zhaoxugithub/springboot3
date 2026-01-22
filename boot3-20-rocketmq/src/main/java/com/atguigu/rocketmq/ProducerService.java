@@ -1,5 +1,6 @@
 package com.atguigu.rocketmq;
 
+import jakarta.annotation.Resource;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProducerService {
 
-    @Autowired
+    @Resource
     private RocketMQTemplate rocketMQTemplate;
 
     @Value("${rocketmq.consumer.topic:test1}")
