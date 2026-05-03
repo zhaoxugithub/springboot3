@@ -64,7 +64,7 @@ public class OrderedMessageProducer {
     public void sendOrderedMessage() {
         try {
             List<OrderStep> orderSteps = buildOrders();
-
+            log.info("========== 准备发送 {} 条顺序消息 ==========", orderSteps.size());
             for (OrderStep orderStep : orderSteps) {
                 // 将订单步骤转换为JSON字符串
                 String jsonString = objectMapper.writeValueAsString(orderStep);
@@ -86,15 +86,65 @@ public class OrderedMessageProducer {
                         String.valueOf(orderStep.getOrderId())  // 使用订单ID作为hashKey
                 );
 
-                log.info("顺序消息发送成功 - 订单ID: {}, 步骤: {}, 队列ID: {}, 发送状态: {}",
+                log.info("✅ 顺序消息发送成功 - 订单ID: {}, 步骤: {}, 队列ID: {}, MsgId: {}",
                         orderStep.getOrderId(),
                         orderStep.getDesc(),
                         sendResult.getMessageQueue().getQueueId(),
-                        sendResult.getSendStatus());
+                        sendResult.getMsgId());
+
+                // 发送间隔，避免发送过快
+                Thread.sleep(50);
             }
+
+            log.info("========== 所有顺序消息发送完成，请观察消费日志 ==========");
+
         } catch (Exception e) {
             log.error("发送顺序消息失败", e);
         }
     }
-}
 
+    /**
+     * 发送单个订单的顺序消息（用于测试验证）
+     * @param orderId 订单ID
+     */
+    public void sendSingleOrderMessage(Long orderId) {
+        try {
+            List<OrderStep> orderSteps = new ArrayList<>();
+            orderSteps.add(new OrderStep(orderId, "创建订单"));
+            orderSteps.add(new OrderStep(orderId, "付款"));
+            orderSteps.add(new OrderStep(orderId, "推送"));
+            orderSteps.add(new OrderStep(orderId, "完成"));
+
+            log.info("========== 准备发送订单 {} 的 {} 条顺序消息 ==========", orderId, orderSteps.size());
+
+            for (OrderStep orderStep : orderSteps) {
+                // 将订单步骤转换为JSON字符串
+                String jsonString = objectMapper.writeValueAsString(orderStep);
+
+                // 构建消息
+                Message<String> message = MessageBuilder.withPayload(jsonString).build();
+
+                // 发送顺序消息
+                SendResult sendResult = rocketMQTemplate.syncSendOrderly(
+                        "order-topic",
+                        message,
+                        String.valueOf(orderStep.getOrderId())  // 使用订单ID作为hashKey
+                );
+
+                log.info("✅ 顺序消息发送成功 - 订单ID: {}, 步骤: {}, 队列ID: {}, MsgId: {}",
+                        orderStep.getOrderId(),
+                        orderStep.getDesc(),
+                        sendResult.getMessageQueue().getQueueId(),
+                        sendResult.getMsgId());
+
+                // 发送间隔
+                Thread.sleep(50);
+            }
+
+            log.info("========== 订单 {} 的所有消息发送完成 ==========", orderId);
+
+        } catch (Exception e) {
+            log.error("发送订单消息失败", e);
+        }
+    }
+}

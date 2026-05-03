@@ -15,13 +15,15 @@ import org.springframework.stereotype.Component;
  * 1. consumeMode = ConsumeMode.ORDERLY - 设置为顺序消费模式
  * 2. 顺序消费保证同一队列的消息按照FIFO顺序消费
  * 3. 消费失败会阻塞当前队列，直到消费成功
+ * 4. consumeThreadMax = 1 - 单线程消费，确保顺序性（非常重要！）
  */
 @Slf4j
 @Component
 @RocketMQMessageListener(
         topic = "order-topic",                      // 监听的Topic
         consumerGroup = "order-consumer-group",     // 消费者组
-        consumeMode = ConsumeMode.ORDERLY          // 顺序消费模式（关键配置）
+        consumeMode = ConsumeMode.ORDERLY,         // 顺序消费模式（关键配置）
+        consumeThreadMax = 1                        // 单线程消费，确保顺序性（关键配置！）
 )
 public class OrderedMessageConsumer implements RocketMQListener<String> {
 
@@ -41,17 +43,19 @@ public class OrderedMessageConsumer implements RocketMQListener<String> {
             OrderStep orderStep = objectMapper.readValue(message, OrderStep.class);
 
             // 模拟消息处理
-            log.info("【顺序消费】收到消息 - 订单ID: {}, 步骤: {}, 线程: {}",
+            log.info("【顺序消费】开始处理 - 订单ID: {}, 步骤: {}, 线程: {}, 时间: {}",
                     orderStep.getOrderId(),
                     orderStep.getDesc(),
-                    Thread.currentThread().getName());
+                    Thread.currentThread().getName(),
+                    System.currentTimeMillis());
 
-            // 模拟业务处理耗时
-            Thread.sleep(100);
+            // 模拟业务处理耗时（增加处理时间，让顺序更明显）
+            Thread.sleep(500);
 
-            log.info("【顺序消费】处理完成 - 订单ID: {}, 步骤: {}",
+            log.info("【顺序消费】处理完成 - 订单ID: {}, 步骤: {}, 时间: {}",
                     orderStep.getOrderId(),
-                    orderStep.getDesc());
+                    orderStep.getDesc(),
+                    System.currentTimeMillis());
 
         } catch (Exception e) {
             log.error("顺序消息消费失败: {}", message, e);
