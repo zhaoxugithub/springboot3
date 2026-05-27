@@ -12,10 +12,20 @@
         <result property="phone" column="phone"/>
         <!-- 其他字段映射 -->
     </resultMap>
+    <insert id="insertAll">
+         INSERT INTO user_profile (profile_id, user_id, full_name, gender, birthdate, phone)
+         VALUES
+         <foreach collection="list" item="profile" separator=",">
+             (#{profile.profileId}, #{profile.userId}, #{profile.fullName}, #{profile.gender}, #{profile.birthdate}, #{profile.phone})
+         </foreach>
+    </insert>
 
     <update id="updateUserProfile" parameterType="com.atguigu.transaction.entity.UserProfile">
         UPDATE user_profile
         SET  phone  = #{phone}
         WHERE user_id = #{userId}
     </update>
+    <delete id="deleteAll">
+        DELETE FROM user_profile
+    </delete>
 </mapper>

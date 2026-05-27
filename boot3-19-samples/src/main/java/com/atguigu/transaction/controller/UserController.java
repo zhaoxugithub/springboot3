@@ -3,10 +3,9 @@ package com.atguigu.transaction.controller;
 import com.atguigu.transaction.entity.User;
 import com.atguigu.transaction.service.UserService;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -21,9 +20,26 @@ public class UserController {
         return userService.query1();
     }
 
-    @GetMapping("/update")
-    public void updateUser() {
-        userService.updateUser1();
+    @GetMapping("/update/{version}")
+    public void updateUser(@PathVariable Long version) throws ParseException {
+        if (version == 1) {
+            userService.updateUser1();
+        } else if (version == 2) {
+            userService.updateUser2();
+        } else if (version == 3) {
+            userService.updateUser3();
+        } else if (version == 4) {
+            userService.updateUser4();
+        } else if (version == 5) {
+            userService.updateUser05();
+        } else {
+            userService.refresh();
+        }
+    }
+
+    @GetMapping("/refresh")
+    public void refresh() throws ParseException {
+        userService.refresh();
     }
 
     @GetMapping("/update2")

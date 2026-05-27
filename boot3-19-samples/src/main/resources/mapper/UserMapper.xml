@@ -13,6 +13,18 @@
         <result property="updatedAt" column="updated_at"/>
     </resultMap>
 
+    <insert id="insertAll">
+         INSERT INTO user (user_id, username, email, password_hash, status, created_at, updated_at)
+         VALUES
+         <foreach collection="list" item="user" separator=",">
+             (#{user.userId},#{user.username}, #{user.email}, #{user.passwordHash}, #{user.status}, #{user.createdAt}, #{user.updatedAt})
+         </foreach>
+    </insert>
+
+    <delete id="deleteAll">
+        DELETE FROM user
+    </delete>
+
     <select id="selectList" resultType="com.atguigu.transaction.entity.User">
         SELECT *
         FROM user
