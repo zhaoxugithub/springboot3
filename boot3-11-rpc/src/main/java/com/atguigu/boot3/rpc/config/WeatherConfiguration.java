@@ -26,7 +26,8 @@ public class WeatherConfiguration {
             // 响应数据量太大有可能会超出BufferSize，所以这里设置的大一点
         }).build();
         // 2、创建工厂
-        return HttpServiceProxyFactory.builder(WebClientAdapter.forClient(client)).build();
+//        return HttpServiceProxyFactory.builder(WebClientAdapter.forClient(client)).build();
+        return null;
     }
 
     @Bean

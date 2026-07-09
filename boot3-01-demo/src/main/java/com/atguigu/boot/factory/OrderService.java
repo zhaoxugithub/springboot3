@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class OrderService {
@@ -25,6 +26,10 @@ public class OrderService {
     @Autowired
     private Map<String, PayFactory> payFactoryMap;
 
+    @Autowired
+    private final Map<String, PayFactory> payFactoryMap2 = new ConcurrentHashMap<String, PayFactory>();
+
+
     public void process() {
         payFactory.createPay();
     }
@@ -42,6 +47,11 @@ public class OrderService {
     public void process4() {
         for (Map.Entry<String, PayFactory> entry : payFactoryMap.entrySet()) {
             System.out.println("Bean Name: " + entry.getKey());
+            entry.getValue().createPay();
+        }
+
+        for (Map.Entry<String, PayFactory> entry : payFactoryMap2.entrySet()) {
+            System.out.println("new Bean Name: " + entry.getKey());
             entry.getValue().createPay();
         }
     }

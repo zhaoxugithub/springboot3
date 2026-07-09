@@ -11,9 +11,9 @@ spring:
       max-file-size: 10MB
   data:
     redis:
-      host: 150.158.141.184
+      host: 192.168.31.93
       port: 6379
-      password: 123456
+      password: redis_NZZdZa
 
 tea:
   name: "t1"
