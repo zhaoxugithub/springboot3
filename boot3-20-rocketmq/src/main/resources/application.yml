@@ -8,3 +8,4 @@ rocketmq:
   consumer:
     group: my-consumer-group
     topic: my-topic
+    enable-msg-trace: true
