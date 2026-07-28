@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author lfy
@@ -27,7 +30,7 @@ public class RedisTestController {
     @GetMapping("/count")
     public String count() {
         Long hello = stringRedisTemplate.opsForValue()
-                                        .increment("hello");
+                .increment("hello", 1);
         // 常见数据类型  k: v value可以有很多类型
         // string： 普通字符串 ： redisTemplate.opsForValue()
         // list:    列表：       redisTemplate.opsForList()
@@ -37,20 +40,48 @@ public class RedisTestController {
         return "访问了【" + hello + "】次";
     }
 
+    @GetMapping("execCommonApi")
+    public String execCommonApi() {
+        return stringCommonAPI();
+    }
+
+    private String stringCommonAPI() {
+        // 列举一下redis 常见的API操作案例
+        // 1 min 过期
+        stringRedisTemplate.opsForValue().set("hello", "world", 1, TimeUnit.MINUTES);
+        Long increment = stringRedisTemplate.opsForValue().increment("page:view", 1);
+        // 设置过个键值对
+        stringRedisTemplate.opsForValue().multiSet(Map.of("k1", "v1", "k2", "v2"));
+        // 查询多个key 值
+        stringRedisTemplate.opsForValue().multiGet(
+                List.of("k1", "k2")).forEach(it -> System.out.println(it));
+        // 仅当键不存在时设置，常用于分布式锁
+        stringRedisTemplate.opsForValue().setIfAbsent("key1", "kkk");
+        String oldValue = stringRedisTemplate.opsForValue().getAndSet("key1", "new kkkk");
+        System.out.println(oldValue);
+        return "commonAPI execute";
+    }
+
+    private String hashCommonAPI() {
+     return null;
+    }
+
+
+
 
     @GetMapping("/person/save")
     public String savePerson() {
         Person person = new Person(1L, "张三", 18, new Date());
         // 1、序列化： 对象转为字符串方式
         redisTemplate.opsForValue()
-                     .set("person", person);
+                .set("person", person);
         return "ok";
     }
 
     @GetMapping("/person/get")
     public Person getPerson() {
         Person person = (Person) redisTemplate.opsForValue()
-                                              .get("person");
+                .get("person");
         return person;
     }
 

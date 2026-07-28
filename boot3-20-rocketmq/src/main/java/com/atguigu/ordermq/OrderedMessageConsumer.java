@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
         topic = "order-topic",                      // 监听的Topic
         consumerGroup = "order-consumer-group",     // 消费者组
         consumeMode = ConsumeMode.ORDERLY,         // 顺序消费模式（关键配置）
-        consumeThreadMax = 1                        // 单线程消费，确保顺序性（关键配置！）
+        consumeThreadMax = 30                        // 单线程消费，确保顺序性（关键配置！）
 )
 public class OrderedMessageConsumer implements RocketMQListener<String> {
 
