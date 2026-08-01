@@ -28,6 +28,12 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.25</version>
+        </dependency>
+
 <!--        切换 jedis 作为操作redis的底层客户端-->
         <dependency>
             <groupId>redis.clients</groupId>
