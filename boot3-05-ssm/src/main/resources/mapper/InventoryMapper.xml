@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.boot3.ssm.mapper.InventoryMapper">
+
+    <!-- SELECT ... FOR UPDATE：行级悲观锁，在事务中使用 -->
+    <select id="selectForUpdate" resultType="com.atguigu.boot3.ssm.bean.Inventory">
+        SELECT id, product_name, stock
+        FROM inventory
+        WHERE id = #{id} FOR UPDATE
+    </select>
+
+    <!-- 扣减库存 -->
+    <update id="updateStock">
+        UPDATE inventory
+        SET stock = #{newStock}
+        WHERE id = #{id}
+    </update>
+
+</mapper>
