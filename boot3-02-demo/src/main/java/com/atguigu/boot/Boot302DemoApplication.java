@@ -3,7 +3,6 @@ package com.atguigu.boot;
 import com.atguigu.boot.bean.*;
 import com.atguigu.boot.bean2.ComputerOp;
 import com.atguigu.boot.bean2.Phone;
-import com.atguigu.boot.config.ComputerConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -36,12 +35,10 @@ public class Boot302DemoApplication {
         Sheep sheep = ioc.getBean(Sheep.class);
         System.out.println("sheep: " + sheep);
 
-
         ComputerOp bean = ioc.getBean(ComputerOp.class);
         System.out.println("bean: " + bean);
 
         Phone phone1 = ioc.getBean(Phone.class);
         System.out.println(phone1);
-
     }
 }
