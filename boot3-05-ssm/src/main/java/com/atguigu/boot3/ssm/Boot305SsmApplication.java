@@ -1,6 +1,6 @@
 package com.atguigu.boot3.ssm;
 
-import com.atguigu.boot3.starter.robot.annotation.EnableRobot;
+//import com.atguigu.boot3.starter.robot.annotation.EnableRobot;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 2、使用mybatis.mapper-locations，告诉MyBatis，每个接口的xml文件都在哪里
  * 3、MyBatis自动关联绑定。
  */
-@EnableRobot
+//@EnableRobot
 @MapperScan(basePackages = "com.atguigu.boot3.ssm.mapper")
 @SpringBootApplication
 public class Boot305SsmApplication {
